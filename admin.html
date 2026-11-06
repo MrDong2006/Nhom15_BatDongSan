@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bảng Điều Khiển Quản Trị Hệ Thống - Minh Vương Home Luxury</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Data Fallback -->
+  <script src="js/data.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col lg:flex-row">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="w-full lg:w-64 bg-slate-950 border-r border-slate-800 flex flex-col justify-between flex-shrink-0 z-20">
+    <div>
+      <!-- Brand Logo Header -->
+      <div class="h-20 px-6 flex items-center gap-3 border-b border-slate-800/80">
+        <div class="w-10 h-10 rounded-xl overflow-hidden border border-amber-400/50 p-0.5 bg-white flex-shrink-0 shadow-md shadow-amber-500/20">
+          <img src="images/logo.jpg" alt="Minh Vương Logo" class="w-full h-full object-cover rounded-lg" />
+        </div>
+        <div>
+          <div class="font-extrabold text-sm tracking-tight text-white flex items-center gap-1">
+            <span>MINH VƯƠNG</span>
+            <span class="text-[9px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-black border border-amber-400/30">ADMIN</span>
+          </div>
+          <div class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Trung Tâm Điều Hành</div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="p-4 space-y-1 text-xs font-bold">
+        <button onclick="switchTab('dashboard')" id="nav-btn-dashboard" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 transition-all">
+          <i class="fa-solid fa-chart-pie text-sm"></i>
+          <span>Tổng quan thống kê</span>
+        </button>
+        <button onclick="switchTab('properties')" id="nav-btn-properties" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-all">
+          <i class="fa-solid fa-building text-sm"></i>
+          <span>Quản lý Bất động sản</span>
+          <span id="badge-prop-count" class="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">9</span>
+        </button>
+        <button onclick="switchTab('inquiries')" id="nav-btn-inquiries" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-all">
+          <i class="fa-solid fa-calendar-check text-sm"></i>
+          <span>Lịch hẹn & Tư vấn</span>
+          <span id="badge-inquiry-count" class="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-rose-500/30 text-rose-300 font-black">2 mới</span>
+        </button>
+        <button onclick="switchTab('users')" id="nav-btn-users" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-all">
+          <i class="fa-solid fa-users text-sm"></i>
+          <span>Quản lý Thành viên</span>
+          <span id="badge-user-count" class="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">5</span>
+        </button>
+        <button onclick="switchTab('reviews')" id="nav-btn-reviews" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-all">
+          <i class="fa-solid fa-star text-sm"></i>
+          <span>Đánh giá & Phản hồi</span>
+          <span id="badge-review-count" class="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">3</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- User Profile & Quick Actions -->
+    <div class="p-4 border-t border-slate-800/80">
+      <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-800 flex items-center gap-3 mb-3">
+        <img id="admin-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-9 h-9 rounded-xl object-cover border border-amber-400/40" />
+        <div class="overflow-hidden">
+          <div class="text-xs font-bold text-white truncate" id="admin-name">Quản Trị Viên Sàn</div>
+          <div class="text-[10px] text-amber-400 font-semibold truncate" id="admin-email">admin@minhvuongluxury.vn</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-[11px] font-bold">
+        <a href="index.html" class="py-2 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center gap-1.5 transition-colors">
+          <i class="fa-solid fa-globe"></i>
+          <span>Xem web</span>
+        </a>
+        <button onclick="handleLogout()" class="py-2 px-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 flex items-center justify-center gap-1.5 transition-colors">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Đăng xuất</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="flex-1 flex flex-col min-w-0 bg-slate-900 overflow-y-auto">
+    
+    <!-- Top Bar -->
+    <header class="h-20 bg-slate-950/70 backdrop-blur-md border-b border-slate-800/80 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-10">
+      <div>
+        <h1 id="page-title" class="text-lg sm:text-xl font-black text-white flex items-center gap-2">
+          <span>Tổng Quan Báo Cáo & Thống Kê</span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-0.5">Dữ liệu thời gian thực được đồng bộ trực tiếp với CSDL `nhom15_batdongsan_db`</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openAddPropertyModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-lg shadow-amber-500/20 transition-all">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>Thêm BĐS mới</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="p-6 sm:p-8 space-y-8 flex-1">
+
+      <!-- ================= SECTION 1: DASHBOARD ================= -->
+      <section id="section-dashboard" class="space-y-8">
+        
+        <!-- KPI Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="bg-slate-950 p-5 rounded-3xl border border-slate-800/80 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400">Tổng BĐS Niêm Yết</span>
+              <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-building"></i>
+              </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-white" id="stat-total-props">9</div>
+            <div class="text-[11px] text-emerald-400 font-bold mt-2 flex items-center gap-1">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+              <span>100% Đang hoạt động trên bản đồ Leaflet</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-3xl border border-slate-800/80 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400">Lượt Xem Toàn Sàn</span>
+              <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-eye"></i>
+              </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-white" id="stat-total-views">1,480+</div>
+            <div class="text-[11px] text-slate-400 font-semibold mt-2">Tăng 24% so với tháng trước</div>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-3xl border border-slate-800/80 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400">Lịch Hẹn Mới Chờ Xử Lý</span>
+              <div class="w-9 h-9 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-rose-400" id="stat-new-inquiries">2</div>
+            <div class="text-[11px] text-rose-400/80 font-bold mt-2 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span>Cần chuyên viên gọi xác nhận</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-3xl border border-slate-800/80 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400">Tổng Thành Viên & Môi Giới</span>
+              <div class="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-white" id="stat-total-users">5</div>
+            <div class="text-[11px] text-purple-400 font-bold mt-2">3 Chuyên viên VIP đã xác minh</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800">
+            <h3 class="font-extrabold text-sm text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-chart-pie text-amber-400"></i>
+              <span>Cơ cấu Bất Động Sản Theo Loại Hình</span>
+            </h3>
+            <div class="h-64 relative flex items-center justify-center">
+              <canvas id="chart-property-types"></canvas>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800">
+            <h3 class="font-extrabold text-sm text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-blue-400"></i>
+              <span>Phân Bổ Bất Động Sản Theo Khu Vực</span>
+            </h3>
+            <div class="h-64 relative flex items-center justify-center">
+              <canvas id="chart-locations"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity Feed & Fast Actions -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Activity Timeline -->
+          <div class="lg:col-span-2 bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-extrabold text-sm text-white flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-amber-400"></i>
+                <span>Nhật Ký Hoạt Động & Sự Kiện Gần Đây</span>
+              </h3>
+              <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Thời gian thực</span>
+            </div>
+            <div class="space-y-3 text-xs">
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0 text-xs mt-0.5">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white">Khách hàng Trần Minh Quang đặt lịch hẹn xem căn hộ</div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Dự án Vincom Shophouse Cần Thơ • Số điện thoại: 0918 888 777</div>
+                </div>
+                <span class="text-[10px] text-slate-400 font-medium">10 phút trước</span>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xs mt-0.5">
+                  <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white">Cập nhật trạng thái giao dịch thành công</div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">The Beverly Vinhomes Grand Park • Chuyên viên: Nguyễn Văn Hưng</div>
+                </div>
+                <span class="text-[10px] text-slate-400 font-medium">35 phút trước</span>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs mt-0.5">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white">Khách hàng gửi nhận xét mới 5.0 ⭐</div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">"Đội ngũ chuyên viên tư vấn rất chuyên nghiệp và nhiệt tình..."</div>
+                </div>
+                <span class="text-[10px] text-slate-400 font-medium">1 giờ trước</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Shortcuts Widget -->
+          <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+            <h3 class="font-extrabold text-sm text-white flex items-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
+              <span>Phím Tắt Thao Tác</span>
+            </h3>
+            <div class="space-y-2">
+              <button onclick="openAddPropertyModal()" class="w-full p-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs flex items-center justify-between shadow-md shadow-amber-500/20 transition-all">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-plus-circle"></i> Đăng thêm BĐS mới</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+              <button onclick="switchTab('inquiries')" class="w-full p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-between border border-slate-800 transition-all">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-calendar-check text-rose-400"></i> Xử lý 2 lịch hẹn mới</span>
+                <span class="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 text-[10px] font-black">2 mới</span>
+              </button>
+              <button onclick="exportPropertiesToCSV()" class="w-full p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-between border border-slate-800 transition-all">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-400"></i> Xuất file báo cáo Excel</span>
+                <i class="fa-solid fa-download text-[10px] text-slate-400"></i>
+              </button>
+              <button onclick="openAddUserModal()" class="w-full p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-between border border-slate-800 transition-all">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-user-plus text-purple-400"></i> Thêm chuyên viên môi giới</span>
+                <i class="fa-solid fa-plus text-[10px] text-slate-400"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= SECTION 2: QUẢN LÝ BẤT ĐỘNG SẢN ================= -->
+      <section id="section-properties" class="hidden space-y-6">
+        <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="relative w-full sm:w-72">
+              <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="prop-search" oninput="filterAdminProperties()" placeholder="Tìm theo tiêu đề, quận, địa chỉ..." class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap">
+              <select id="prop-filter-cat" onchange="filterAdminProperties()" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none">
+                <option value="all">Tất cả hình thức</option>
+                <option value="sale">Mua bán</option>
+                <option value="rent">Cho thuê</option>
+              </select>
+              <select id="prop-filter-city" onchange="filterAdminProperties()" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none">
+                <option value="all">Tất cả tỉnh thành</option>
+                <option value="cantho">Cần Thơ</option>
+                <option value="hcm">TP. Hồ Chí Minh</option>
+                <option value="hn">Hà Nội</option>
+                <option value="danang">Đà Nẵng</option>
+              </select>
+              <select id="prop-filter-status" onchange="filterAdminProperties()" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none">
+                <option value="all">Tất cả trạng thái</option>
+                <option value="available">Đang niêm yết</option>
+                <option value="sold">Đã giao dịch</option>
+              </select>
+              <button onclick="exportPropertiesToCSV()" class="px-3 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-colors" title="Xuất file Excel CSV">
+                <i class="fa-solid fa-file-excel"></i>
+                <span class="hidden sm:inline">Xuất CSV</span>
+              </button>
+              <button onclick="openAddPropertyModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs flex items-center gap-1.5 transition-colors shadow-md shadow-amber-500/20">
+                <i class="fa-solid fa-plus"></i>
+                <span>Thêm BĐS</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="text-slate-400 border-b border-slate-800 bg-slate-900/50">
+                <tr>
+                  <th class="p-3.5 font-extrabold">ID</th>
+                  <th class="p-3.5 font-extrabold">Bất động sản</th>
+                  <th class="p-3.5 font-extrabold">Loại hình</th>
+                  <th class="p-3.5 font-extrabold">Khu vực</th>
+                  <th class="p-3.5 font-extrabold">Giá bán/thuê</th>
+                  <th class="p-3.5 font-extrabold">Diện tích</th>
+                  <th class="p-3.5 font-extrabold">Trạng thái (Bấm đổi)</th>
+                  <th class="p-3.5 font-extrabold text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="admin-prop-tbody" class="divide-y divide-slate-800/80">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3: LỊCH HẸN & TƯ VẤN ================= -->
+      <section id="section-inquiries" class="hidden space-y-6">
+        <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <h3 class="font-extrabold text-sm text-white">Danh Sách Khách Đặt Lịch Hẹn Xem Nhà & Tư Vấn Gói Vay</h3>
+              <p class="text-[11px] text-slate-400">Tiếp nhận yêu cầu từ trang chi tiết BĐS và tính lãi vay</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs" id="inq-filter-group">
+                <button onclick="filterInquiries('all')" id="inq-btn-all" class="px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-black">Tất cả</button>
+                <button onclick="filterInquiries('new')" id="inq-btn-new" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white font-bold">Mới</button>
+                <button onclick="filterInquiries('contacted')" id="inq-btn-contacted" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white font-bold">Đã gọi</button>
+                <button onclick="filterInquiries('completed')" id="inq-btn-completed" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white font-bold">Hoàn tất</button>
+              </div>
+              <button onclick="loadInquiries()" class="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs" title="Tải lại">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="text-slate-400 border-b border-slate-800 bg-slate-900/50">
+                <tr>
+                  <th class="p-3.5 font-extrabold">Mã</th>
+                  <th class="p-3.5 font-extrabold">Khách hàng</th>
+                  <th class="p-3.5 font-extrabold">Số điện thoại</th>
+                  <th class="p-3.5 font-extrabold">BĐS quan tâm</th>
+                  <th class="p-3.5 font-extrabold">Thời gian hẹn</th>
+                  <th class="p-3.5 font-extrabold">Nội dung ghi chú</th>
+                  <th class="p-3.5 font-extrabold">Tiến độ</th>
+                  <th class="p-3.5 font-extrabold text-right">Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="admin-inquiry-tbody" class="divide-y divide-slate-800/80">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4: THÀNH VIÊN ================= -->
+      <section id="section-users" class="hidden space-y-6">
+        <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <h3 class="font-extrabold text-sm text-white">Danh Sách Thành Viên & Chuyên Viên Môi Giới</h3>
+              <p class="text-[11px] text-slate-400">Quản lý phân quyền tài khoản (Admin, Môi giới VIP, Khách hàng)</p>
+            </div>
+            <button onclick="openAddUserModal()" class="px-3.5 py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-700 text-white font-black text-xs flex items-center gap-1.5 shadow-md shadow-purple-600/20">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>+ Thêm thành viên</span>
+            </button>
+          </div>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="text-slate-400 border-b border-slate-800 bg-slate-900/50">
+                <tr>
+                  <th class="p-3.5 font-extrabold">ID</th>
+                  <th class="p-3.5 font-extrabold">Họ và tên</th>
+                  <th class="p-3.5 font-extrabold">Email</th>
+                  <th class="p-3.5 font-extrabold">Số điện thoại</th>
+                  <th class="p-3.5 font-extrabold">Vai trò</th>
+                  <th class="p-3.5 font-extrabold">Trạng thái</th>
+                  <th class="p-3.5 font-extrabold text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-tbody" class="divide-y divide-slate-800/80">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 5: ĐÁNH GIÁ ================= -->
+      <section id="section-reviews" class="hidden space-y-6">
+        <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-extrabold text-sm text-white">Danh Sách Nhận Xét & Đánh Giá Khách Hàng</h3>
+              <p class="text-[11px] text-slate-400">Kiểm duyệt và hiển thị đánh giá công khai trên website</p>
+            </div>
+            <span class="text-xs text-amber-400 font-bold bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+              <i class="fa-solid fa-star mr-1"></i>Đánh giá trung bình: 4.9★
+            </span>
+          </div>
+          <div id="admin-reviews-list" class="space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= MODAL THÊM BĐS NHANH ================= -->
+  <div id="modal-add-property" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-950 rounded-3xl max-w-2xl w-full border border-slate-800 p-6 sm:p-8 space-y-5 animate-fadeIn">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="font-black text-base text-white flex items-center gap-2">
+          <i class="fa-solid fa-plus-circle text-amber-400"></i>
+          <span>Thêm Bất Động Sản Mới Vào CSDL</span>
+        </div>
+        <button onclick="closeAddPropertyModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="form-admin-add-prop" onsubmit="handleCreateProperty(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Tiêu đề tin đăng *</label>
+          <input type="text" id="new-title" required placeholder="Ví dụ: Shophouse mặt tiền đường 30/4 Ninh Kiều Cần Thơ" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Hình thức *</label>
+            <select id="new-category" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none">
+              <option value="sale">Mua bán</option>
+              <option value="rent">Cho thuê</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Loại hình *</label>
+            <select id="new-type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none">
+              <option value="apartment">Căn hộ chung cư</option>
+              <option value="house">Nhà phố, shophouse</option>
+              <option value="villa">Biệt thự cao cấp</option>
+              <option value="land">Đất nền dự án</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Giá hiển thị (VD: 12.8 Tỷ) *</label>
+            <input type="text" id="new-price" required placeholder="12.8 Tỷ" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Quy đổi Triệu VNĐ *</label>
+            <input type="number" id="new-price-val" required placeholder="12800" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Diện tích (m²) *</label>
+            <input type="number" id="new-area" required placeholder="150" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Tỉnh / Thành phố *</label>
+            <select id="new-city" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none">
+              <option value="cantho">Cần Thơ</option>
+              <option value="hcm">TP. Hồ Chí Minh</option>
+              <option value="hn">Hà Nội</option>
+              <option value="danang">Đà Nẵng</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Quận / Huyện *</label>
+            <input type="text" id="new-district" required placeholder="Quận Ninh Kiều" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Địa chỉ chi tiết *</label>
+          <input type="text" id="new-address" required placeholder="Số 209 Đường 30/4, P. Xuân Khánh, Ninh Kiều, Cần Thơ" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Mô tả bất động sản *</label>
+          <textarea id="new-desc" rows="3" required placeholder="Nội dung giới thiệu chi tiết căn hộ, sổ hồng, nội thất..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeAddPropertyModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700">Hủy bỏ</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black shadow-lg shadow-amber-500/20">Lưu vào Cơ sở dữ liệu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Admin JavaScript Logic -->
+  <script>
+    let allProperties = [];
+    let allInquiries = [];
+    let allUsers = [];
+
+    let typeChartInstance = null;
+    let locationChartInstance = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Cập nhật thông tin Quản trị viên
+      const user = JSON.parse(localStorage.getItem("bds_current_user") || "null");
+      if (user) {
+        const nameEl = document.getElementById("admin-name");
+        if (nameEl) nameEl.textContent = user.name || user.fullName || "Quản trị viên";
+        const emailEl = document.getElementById("admin-email");
+        if (emailEl && user.email) emailEl.textContent = user.email;
+        const avatarEl = document.getElementById("admin-avatar");
+        if (avatarEl && user.avatar) avatarEl.src = user.avatar;
+      }
+      loadDashboardStats();
+      loadProperties();
+      loadInquiries();
+      loadUsers();
+      loadReviews();
+    });
+
+    function switchTab(tabId) {
+      const sections = ['dashboard', 'properties', 'inquiries', 'users', 'reviews'];
+      sections.forEach(s => {
+        const el = document.getElementById(`section-${s}`);
+        const btn = document.getElementById(`nav-btn-${s}`);
+        if (s === tabId) {
+          el.classList.remove('hidden');
+          btn.className = "w-full flex items-center gap-3 px-3.5 py-3 rounded-xl bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 transition-all";
+        } else {
+          el.classList.add('hidden');
+          btn.className = "w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 transition-all";
+        }
+      });
+
+      const titles = {
+        dashboard: "Tổng Quan Báo Cáo & Thống Kê",
+        properties: "Quản Lý Danh Mục Bất Động Sản",
+        inquiries: "Tiếp Nhận Lịch Hẹn Xem Nhà & Tư Vấn",
+        users: "Quản Lý Danh Sách Người Dùng & Phân Quyền",
+        reviews: "Kiểm Duyệt Đánh Giá Trải Nghiệm Khách Hàng"
+      };
+      document.getElementById("page-title").textContent = titles[tabId];
+    }
+
+    async function loadDashboardStats() {
+      try {
+        const res = await fetch('/api/admin/stats');
+        if (!res.ok) throw new Error('API not ok');
+        const json = await res.json();
+        if (json.status === 'success' && json.data) {
+          const d = json.data;
+          document.getElementById('stat-total-props').textContent = d.totalProperties;
+          document.getElementById('stat-total-views').textContent = d.totalViews ? d.totalViews.toLocaleString() : '1,480+';
+          document.getElementById('stat-new-inquiries').textContent = d.newInquiries || 2;
+          document.getElementById('stat-total-users').textContent = d.totalUsers || 5;
+
+          renderTypeChart(d.typeStats || [
+            { type_name: 'Căn hộ chung cư', count: 4 },
+            { type_name: 'Nhà phố thương mại', count: 2 },
+            { type_name: 'Biệt thự cao cấp', count: 2 },
+            { type_name: 'Đất nền dự án', count: 1 }
+          ]);
+          renderLocationChart(d.cityStats || [
+            { city_name: 'TP.HCM', count: 4 },
+            { city_name: 'Cần Thơ', count: 2 },
+            { city_name: 'Hà Nội', count: 2 },
+            { city_name: 'Đà Nẵng', count: 1 }
+          ]);
+        } else {
+          throw new Error('Invalid stats json');
+        }
+      } catch (e) {
+        console.warn('Dùng dữ liệu thống kê tĩnh:', e);
+        document.getElementById('stat-total-props').textContent = (typeof REAL_ESTATE_DATA !== 'undefined') ? REAL_ESTATE_DATA.length : 9;
+        document.getElementById('stat-total-views').textContent = '1,480+';
+        document.getElementById('stat-new-inquiries').textContent = 2;
+        document.getElementById('stat-total-users').textContent = 5;
+
+        renderTypeChart([
+          { type_name: 'Căn hộ chung cư', count: 4 },
+          { type_name: 'Nhà phố thương mại', count: 2 },
+          { type_name: 'Biệt thự cao cấp', count: 2 },
+          { type_name: 'Đất nền dự án', count: 1 }
+        ]);
+        renderLocationChart([
+          { city_name: 'TP.HCM', count: 4 },
+          { city_name: 'Cần Thơ', count: 2 },
+          { city_name: 'Hà Nội', count: 2 },
+          { city_name: 'Đà Nẵng', count: 1 }
+        ]);
+      }
+    }
+
+    function renderTypeChart(typeStats) {
+      const ctx = document.getElementById('chart-property-types');
+      if (!ctx || typeof Chart === 'undefined') return;
+      if (typeChartInstance) {
+        typeChartInstance.destroy();
+      }
+      typeChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: typeStats.map(t => t.type_name),
+          datasets: [{
+            data: typeStats.map(t => t.count),
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    function renderLocationChart(cityStats) {
+      const ctx = document.getElementById('chart-locations');
+      if (!ctx || typeof Chart === 'undefined') return;
+      if (locationChartInstance) {
+        locationChartInstance.destroy();
+      }
+      locationChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cityStats.map(c => c.city_name),
+          datasets: [{
+            label: 'Số lượng BĐS',
+            data: cityStats.map(c => c.count),
+            backgroundColor: '#f59e0b',
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+            y: { ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: '#1e293b' } }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    async function loadProperties() {
+      try {
+        const res = await fetch('/api/properties');
+        if (!res.ok) throw new Error('API not ok');
+        const json = await res.json();
+        if (!json.data || !Array.isArray(json.data) || json.data.length === 0) throw new Error('Empty properties');
+        allProperties = json.data;
+        document.getElementById('badge-prop-count').textContent = allProperties.length;
+        renderAdminProperties(allProperties);
+      } catch (e) {
+        console.warn('Lỗi nạp BĐS từ API, dùng dữ liệu mẫu data.js:', e);
+        if (typeof REAL_ESTATE_DATA !== 'undefined' && Array.isArray(REAL_ESTATE_DATA)) {
+          allProperties = REAL_ESTATE_DATA;
+        } else {
+          allProperties = [];
+        }
+        document.getElementById('badge-prop-count').textContent = allProperties.length;
+        renderAdminProperties(allProperties);
+      }
+    }
+    }
+
+    function renderAdminProperties(list) {
+      const tbody = document.getElementById('admin-prop-tbody');
+      tbody.innerHTML = list.map(p => `
+        <tr class="hover:bg-slate-900/60 transition-colors">
+          <td class="p-3.5 font-bold text-slate-500">#${p.id}</td>
+          <td class="p-3.5">
+            <div class="flex items-center gap-3">
+              <img src="${(p.images && p.images[0]) || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=100&q=80'}" class="w-10 h-10 rounded-xl object-cover border border-slate-800" />
+              <div class="max-w-xs">
+                <div class="font-extrabold text-white truncate hover:text-amber-400 cursor-pointer" onclick="window.open('property-detail.html?id=${p.id}', '_blank')">${p.title}</div>
+                <div class="text-[11px] text-slate-400 truncate">${p.address}</div>
+              </div>
+            </div>
+          </td>
+          <td class="p-3.5"><span class="px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-semibold text-[11px]">${p.typeName || p.type}</span></td>
+          <td class="p-3.5 text-slate-300 font-medium">${p.district || p.city}</td>
+          <td class="p-3.5 font-extrabold text-amber-400">${p.price || p.price_display}</td>
+          <td class="p-3.5 text-slate-300 font-medium">${p.area} m²</td>
+          <td class="p-3.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${p.status === 'available' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-800 text-slate-400'}">
+              ${p.status === 'available' ? 'Đang niêm yết' : 'Đã giao dịch'}
+            </span>
+          </td>
+          <td class="p-3.5 text-right space-x-1">
+            <a href="property-detail.html?id=${p.id}" target="_blank" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 inline-block" title="Xem chi tiết">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <button onclick="handleDeleteProperty(${p.id})" class="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300" title="Xóa BĐS">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function filterAdminProperties() {
+      const kw = document.getElementById('prop-search').value.toLowerCase();
+      const cat = document.getElementById('prop-filter-cat').value;
+      const city = document.getElementById('prop-filter-city').value;
+
+      const filtered = allProperties.filter(p => {
+        if (cat !== 'all' && p.category !== cat) return false;
+        if (city !== 'all' && p.city !== city) return false;
+        if (kw && !p.title.toLowerCase().includes(kw) && !p.address.toLowerCase().includes(kw)) return false;
+        return true;
+      });
+      renderAdminProperties(filtered);
+    }
+
+    async function loadInquiries() {
+      try {
+        const res = await fetch('/api/inquiries');
+        if (!res.ok) throw new Error('Inquiries API not ok');
+        const json = await res.json();
+        if (!json.data || !Array.isArray(json.data) || json.data.length === 0) throw new Error('Empty inquiries');
+        allInquiries = json.data;
+        const newCount = allInquiries.filter(i => i.status === 'new').length;
+        document.getElementById('badge-inquiry-count').textContent = `${newCount} mới`;
+
+        const tbody = document.getElementById('admin-inquiry-tbody');
+        tbody.innerHTML = allInquiries.map(item => `
+          <tr class="hover:bg-slate-900/60 transition-colors">
+            <td class="p-3.5 font-bold text-slate-500">#${item.id}</td>
+            <td class="p-3.5 font-extrabold text-white">${item.full_name}</td>
+            <td class="p-3.5 font-mono text-amber-400">${item.phone}</td>
+            <td class="p-3.5 text-slate-300">${item.property_title || 'Tư vấn chung'}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${item.appointment_date || 'Hôm nay'} (${item.appointment_time || 'Sáng'})</td>
+            <td class="p-3.5 text-slate-400 max-w-xs truncate">${item.notes || '-'}</td>
+            <td class="p-3.5">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-black ${
+                item.status === 'new' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' :
+                item.status === 'contacted' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
+                'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+              }">
+                ${item.status === 'new' ? 'Chưa gọi' : item.status === 'contacted' ? 'Đã gọi' : 'Hoàn thành'}
+              </span>
+            </td>
+            <td class="p-3.5 text-right">
+              <select onchange="updateInquiryStatus(${item.id}, this.value)" class="px-2 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300">
+                <option value="new" ${item.status === 'new' ? 'selected' : ''}>Mới</option>
+                <option value="contacted" ${item.status === 'contacted' ? 'selected' : ''}>Đã gọi</option>
+                <option value="completed" ${item.status === 'completed' ? 'selected' : ''}>Hoàn tất</option>
+              </select>
+            </td>
+          </tr>
+        `).join("");
+      } catch (e) {
+        console.warn('Lỗi nạp lịch hẹn từ API, dùng dữ liệu mẫu:', e);
+        allInquiries = [
+          { id: 1, full_name: 'Trần Minh Quang', phone: '0918 888 777', property_title: 'Vincom Shophouse Cần Thơ', appointment_date: 'Thứ 7 tuần này', appointment_time: '15:00', notes: 'Muốn xem trực tiếp căn góc shophouse', status: 'new' },
+          { id: 2, full_name: 'Lê Thị Thu Thủy', phone: '0933 222 111', property_title: 'The Beverly - Vinhomes Grand Park', appointment_date: 'Chủ Nhật', appointment_time: '09:30', notes: 'Tư vấn gói vay mua nhà lãi suất 5.5%', status: 'contacted' }
+        ];
+        document.getElementById('badge-inquiry-count').textContent = `${allInquiries.filter(i => i.status === 'new').length} mới`;
+        const tbody = document.getElementById('admin-inquiry-tbody');
+        if (tbody) {
+          tbody.innerHTML = allInquiries.map(item => `
+            <tr class="hover:bg-slate-900/60 transition-colors">
+              <td class="p-3.5 font-bold text-slate-500">#${item.id}</td>
+              <td class="p-3.5 font-extrabold text-white">${item.full_name}</td>
+              <td class="p-3.5 font-mono text-amber-400">${item.phone}</td>
+              <td class="p-3.5 text-slate-300">${item.property_title || 'Tư vấn chung'}</td>
+              <td class="p-3.5 text-slate-400 font-medium">${item.appointment_date} (${item.appointment_time})</td>
+              <td class="p-3.5 text-slate-400 max-w-xs truncate">${item.notes || '-'}</td>
+              <td class="p-3.5">
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-black ${
+                  item.status === 'new' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' :
+                  item.status === 'contacted' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
+                  'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                }">
+                  ${item.status === 'new' ? 'Chưa gọi' : item.status === 'contacted' ? 'Đã gọi' : 'Hoàn thành'}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <button onclick="showToast('Đã gọi điện cho khách hàng')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-amber-400 font-bold">Xử lý</button>
+              </td>
+            </tr>
+          `).join("");
+        }
+      }
+    }
+
+    async function updateInquiryStatus(id, newStatus) {
+      try {
+        const res = await fetch(`/api/inquiries/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        showToast('Cập nhật trạng thái lịch hẹn thành công!');
+        loadInquiries();
+      } catch (e) {
+        showToast('Lỗi cập nhật', 'error');
+      }
+    }
+
+    async function loadUsers() {
+      try {
+        const res = await fetch('/api/admin/users');
+        if (!res.ok) throw new Error('Users API not ok');
+        const json = await res.json();
+        if (!json.data || !Array.isArray(json.data) || json.data.length === 0) throw new Error('Empty users');
+        allUsers = json.data;
+        document.getElementById('badge-user-count').textContent = allUsers.length;
+
+        const tbody = document.getElementById('admin-users-tbody');
+        tbody.innerHTML = allUsers.map(u => `
+          <tr class="hover:bg-slate-900/60 transition-colors">
+            <td class="p-3.5 font-bold text-slate-500">#${u.id}</td>
+            <td class="p-3.5 font-extrabold text-white">${u.full_name}</td>
+            <td class="p-3.5 text-slate-400 font-mono">${u.email}</td>
+            <td class="p-3.5 text-slate-300">${u.phone}</td>
+            <td class="p-3.5"><span class="px-2 py-0.5 rounded-md ${u.role_name === 'admin' ? 'bg-amber-400/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'} font-bold">${u.role_display || u.role_name}</span></td>
+            <td class="p-3.5">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${u.status === 'active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">
+                ${u.status === 'active' ? 'Hoạt động' : 'Tạm khóa'}
+              </span>
+            </td>
+            <td class="p-3.5 text-right">
+              <button onclick="toggleUserStatus(${u.id}, '${u.status}')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold ${u.status === 'active' ? 'bg-slate-800 text-rose-400 hover:bg-slate-700' : 'bg-emerald-500/20 text-emerald-400'}">
+                ${u.status === 'active' ? 'Khóa' : 'Kích hoạt'}
+              </button>
+            </td>
+          </tr>
+        `).join("");
+      } catch (e) {
+        console.warn('Lỗi nạp thành viên từ API, dùng dữ liệu mẫu:', e);
+        allUsers = [
+          { id: 1, full_name: 'Quản Trị Viên Sàn', email: 'admin@minhvuongluxury.vn', phone: '1900 6868', role_name: 'admin', role_display: 'Quản trị viên', status: 'active' },
+          { id: 2, full_name: 'Nguyễn Văn Hưng', email: 'hung.nguyen@minhvuongluxury.vn', phone: '0908 123 456', role_name: 'agent', role_display: 'Chuyên viên VIP', status: 'active' },
+          { id: 3, full_name: 'Trần Minh Khôi', email: 'khoi.tran@gmail.com', phone: '0912 345 678', role_name: 'customer', role_display: 'Khách hàng', status: 'active' },
+          { id: 4, full_name: 'Lê Hoàng Nam', email: 'nam.le@minhvuongluxury.vn', phone: '0912 345 678', role_name: 'agent', role_display: 'Môi giới', status: 'active' },
+          { id: 5, full_name: 'Ngô Văn Phát', email: 'phat.ngo@minhvuongluxury.vn', phone: '0945 678 999', role_name: 'agent', role_display: 'Môi giới', status: 'active' }
+        ];
+        document.getElementById('badge-user-count').textContent = allUsers.length;
+        const tbody = document.getElementById('admin-users-tbody');
+        if (tbody) {
+          tbody.innerHTML = allUsers.map(u => `
+            <tr class="hover:bg-slate-900/60 transition-colors">
+              <td class="p-3.5 font-bold text-slate-500">#${u.id}</td>
+              <td class="p-3.5 font-extrabold text-white">${u.full_name}</td>
+              <td class="p-3.5 text-slate-400 font-mono">${u.email}</td>
+              <td class="p-3.5 text-slate-300">${u.phone}</td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded-md ${u.role_name === 'admin' ? 'bg-amber-400/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'} font-bold">${u.role_display || u.role_name}</span></td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${u.status === 'active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">
+                  ${u.status === 'active' ? 'Hoạt động' : 'Tạm khóa'}
+                </span>
+              </td>
+              <td class="p-3.5 text-right">
+                <button onclick="toggleUserStatus(${u.id}, '${u.status}')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold ${u.status === 'active' ? 'bg-slate-800 text-rose-400 hover:bg-slate-700' : 'bg-emerald-500/20 text-emerald-400'}">
+                  ${u.status === 'active' ? 'Khóa' : 'Kích hoạt'}
+                </button>
+              </td>
+            </tr>
+          `).join("");
+        }
+      }
+    }
+
+    async function toggleUserStatus(id, currentStatus) {
+      const newStatus = currentStatus === 'active' ? 'locked' : 'active';
+      try {
+        await fetch(`/api/admin/users/${id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        showToast(`Đã chuyển trạng thái người dùng #${id} thành ${newStatus}!`);
+        loadUsers();
+      } catch (e) {
+        showToast('Lỗi cập nhật', 'error');
+      }
+    }
+
+    async function loadReviews() {
+      try {
+        const res = await fetch('/api/reviews');
+        if (!res.ok) throw new Error('Reviews API not ok');
+        const json = await res.json();
+        const reviews = (json.data && Array.isArray(json.data) && json.data.length > 0) ? json.data : null;
+        if (!reviews) throw new Error('No reviews returned from API');
+        renderAdminReviews(reviews);
+      } catch (e) {
+        console.warn('Lỗi nạp đánh giá từ API, dùng dữ liệu mẫu:', e);
+        const fallbackReviews = [
+          {
+            author_name: 'Nguyễn Văn Minh',
+            avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80',
+            rating: 5,
+            title: 'Hài lòng về chất lượng tư vấn',
+            content: 'Đội ngũ chuyên viên tư vấn rất chuyên nghiệp và nhiệt tình. Hỗ trợ thủ tục pháp lý nhanh gọn, xem căn hộ thực tế rất đúng với thông tin giới thiệu trên web.'
+          },
+          {
+            author_name: 'Phạm Thị Mai Hương',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80',
+            rating: 5,
+            title: 'Giao diện trực quan, bản đồ xem rất tiện',
+            content: 'Rất thích tính năng xem bản đồ quy hoạch và tiện ích xung quanh bán kính 2km-5km. Căn hộ The Beverly bàn giao đúng chuẩn cao cấp.'
+          },
+          {
+            author_name: 'Hoàng Quốc Tuấn',
+            avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80',
+            rating: 5,
+            title: 'Đầu tư sinh lời tốt',
+            content: 'Được các bạn chuyên viên tư vấn đầu tư căn shophouse Vincom Cần Thơ, vị trí đắc địa, thanh khoản và tiềm năng tăng giá rất tốt.'
+          }
+        ];
+        renderAdminReviews(fallbackReviews);
+      }
+    }
+
+    function renderAdminReviews(reviews) {
+      const badge = document.getElementById('badge-review-count');
+      if (badge) badge.textContent = reviews.length;
+      const container = document.getElementById('admin-reviews-list');
+      if (!container) return;
+      container.innerHTML = reviews.map(r => `
+        <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex items-start justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <img src="${r.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}" class="w-10 h-10 rounded-xl object-cover border border-slate-800" />
+            <div>
+              <div class="font-extrabold text-white text-xs">${r.author_name} • <span class="text-amber-400">${r.rating || 5} ⭐</span></div>
+              <div class="text-[11px] text-slate-400 mt-0.5 font-bold">${r.title || 'Đánh giá dịch vụ'}</div>
+              <p class="text-xs text-slate-300 mt-1 leading-relaxed">${r.content}</p>
+            </div>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Đã duyệt</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function openAddPropertyModal() {
+      document.getElementById('modal-add-property').classList.remove('hidden');
+      document.getElementById('modal-add-property').classList.add('flex');
+    }
+
+    function closeAddPropertyModal() {
+      document.getElementById('modal-add-property').classList.add('hidden');
+      document.getElementById('modal-add-property').classList.remove('flex');
+    }
+
+    async function handleCreateProperty(e) {
+      e.preventDefault();
+      const payload = {
+        title: document.getElementById('new-title').value,
+        category: document.getElementById('new-category').value,
+        type: document.getElementById('new-type').value,
+        price: document.getElementById('new-price').value,
+        priceValue: document.getElementById('new-price-val').value,
+        area: document.getElementById('new-area').value,
+        city: document.getElementById('new-city').value,
+        district: document.getElementById('new-district').value,
+        address: document.getElementById('new-address').value,
+        description: document.getElementById('new-desc').value
+      };
+
+      try {
+        const res = await fetch('/api/properties', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.status === 'success') {
+          showToast('Thêm bất động sản mới thành công!');
+          closeAddPropertyModal();
+          loadProperties();
+          loadDashboardStats();
+        } else {
+          showToast(json.message || 'Lỗi thêm BĐS', 'error');
+        }
+      } catch (err) {
+        showToast('Lỗi gửi dữ liệu lên server', 'error');
+      }
+    }
+
+    async function handleDeleteProperty(id) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa vĩnh viễn BĐS #${id} khỏi CSDL?`)) return;
+      try {
+        const res = await fetch(`/api/properties/${id}`, { method: 'DELETE' });
+        const json = await res.json();
+        showToast(json.message || 'Đã xóa thành công!');
+        loadProperties();
+        loadDashboardStats();
+      } catch (e) {
+        showToast('Lỗi xóa BĐS', 'error');
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem("bds_current_user");
+      window.location.href = "auth.html";
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = `p-4 rounded-2xl shadow-2xl flex items-center gap-3 transition-all duration-300 text-xs sm:text-sm font-semibold text-white ${
+        type === "success" ? "bg-emerald-600" : "bg-rose-600"
+      }`;
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+  </script>
+</body>
+</html>

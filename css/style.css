@@ -1,0 +1,400 @@
+/* Tùy chỉnh CSS & Hệ thống Hình động (Motion Design) cho Bất Động Sản Hub */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --brand-primary: #2563eb;
+  --brand-secondary: #0f172a;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
+  background-color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ================= 1. HÌNH ĐỘNG THANH MENU & NÚT BẤM (NAVBAR & CTA MOTION) ================= */
+
+/* Hiệu ứng quét tia sáng (Shimmer Sweep) trên nút CTA chính */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  animation: shimmerSweep 3.8s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+  0% { left: -60%; }
+  35%, 100% { left: 130%; }
+}
+
+/* Hiệu ứng nảy icon mềm mại khi di chuột trên thanh Menu */
+.nav-link {
+  position: relative;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link i {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.nav-link:hover i {
+  transform: scale(1.22) rotate(-6deg);
+}
+
+/* Sóng radar lan tỏa cho huy hiệu LIVE trên Bản đồ số */
+.live-radar-dot {
+  position: relative;
+  display: inline-flex;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+}
+
+.live-radar-dot::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.75);
+  animation: radarPing 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  80%, 100% { transform: scale(2.3); opacity: 0; }
+}
+
+/* Hiệu ứng xoay nhẹ cho Logo khi hover */
+.logo-badge-3d {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.group:hover .logo-badge-3d {
+  transform: scale(1.08) rotate(-5deg);
+  box-shadow: 0 12px 24px -4px rgba(37, 99, 235, 0.45);
+}
+
+/* ================= 2. HÌNH ĐỘNG HERO BANNER & VẬT THỂ TRÔI NỔI (FLOATING ORBS & BADGES) ================= */
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(8px) translateX(-6px); }
+}
+
+@keyframes auroraGlow {
+  0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.25; }
+  50% { transform: translate(-46%, 12px) scale(1.12); opacity: 0.4; }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 5.2s ease-in-out infinite;
+}
+
+.animate-aurora {
+  animation: auroraGlow 8s ease-in-out infinite;
+}
+
+/* Hiệu ứng chữ chuyển màu động (Animated Gradient Text) */
+.animated-gradient-text {
+  background-size: 200% auto;
+  animation: gradientFlow 4s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ================= 3. HÌNH ĐỘNG THẺ BẤT ĐỘNG SẢN (STAGGERED CARD REVEAL & HOVER LIFT) ================= */
+
+@keyframes cardStaggerIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.property-card {
+  animation: cardStaggerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease !important;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 32px -8px rgba(37, 99, 235, 0.14), 0 8px 16px -6px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Hiệu ứng nhịp tim khi bấm Lưu yêu thích */
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.38); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.animate-heart-pop {
+  animation: heartPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hiệu ứng xuất hiện khi cuộn trang (Scroll Reveal) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= 4. LEAFLET CUSTOM MARKER & POPUP MOTION ================= */
+.custom-price-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+}
+
+.price-pill {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.42);
+  white-space: nowrap;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price-pill:hover,
+.custom-price-marker.active .price-pill {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  transform: scale(1.16) translateY(-2px);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.5);
+  border-color: #38bdf8;
+  z-index: 1000 !important;
+}
+
+.price-pill-tail {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #3b82f6;
+  margin-top: -1px;
+  transition: border-top-color 0.25s ease;
+}
+
+.price-pill:hover + .price-pill-tail,
+.custom-price-marker.active .price-pill-tail {
+  border-top-color: #0f172a;
+}
+
+/* Popup Leaflet Custom */
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  min-width: 270px !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Hiệu ứng nhịp đập khi hover thẻ BĐS */
+@keyframes markerPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.26) translateY(-4px); }
+  100% { transform: scale(1.16) translateY(-2px); }
+}
+
+.marker-highlight .price-pill {
+  animation: markerPulse 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  background: linear-gradient(135deg, #e11d48, #f43f5e) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 6px rgba(225, 29, 72, 0.32), 0 10px 20px rgba(225, 29, 72, 0.4) !important;
+}
+
+.marker-highlight .price-pill-tail {
+  border-top-color: #e11d48 !important;
+}
+
+/* Image zoom effect on hover */
+.img-zoom-container {
+  overflow: hidden;
+}
+
+.img-zoom-container img {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.property-card:hover .img-zoom-container img {
+  transform: scale(1.09);
+}
+
+/* Line clamp */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Animation fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Step Wizard Navigation styling */
+.wizard-step.active .step-number {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.wizard-step.completed .step-number {
+  background-color: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+/* Range input slider styling */
+input[type=range] {
+  -webkit-appearance: none;
+  background: #e2e8f0;
+  border-radius: 8px;
+  height: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #2563eb;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* ================= THANH MENU CỐ ĐỊNH (STICKY NAVBAR) ================= */
+#main-header,
+.app-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1100 !important;
+}
+
+#mobile-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1099 !important;
+  animation: slideDownMenu 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= THANH ĐIỀU HƯỚNG DƯỚI ĐÁY TRÊN MOBILE ================= */
+#mobile-bottom-nav {
+  z-index: 1100 !important;
+  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+}

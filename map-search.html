@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bản Đồ Bất Động Sản Số - Tìm Kiếm Nhà Đất Trực Quan | Minh Vương Home Luxury</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+</head>
+<body class="h-full flex flex-col overflow-hidden bg-slate-100 text-slate-800">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200 flex-shrink-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group flex-shrink-0">
+          <div class="w-11 h-11 rounded-2xl overflow-hidden border border-amber-200/70 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-all bg-white p-0.5 flex-shrink-0">
+            <img src="images/logo.jpg" alt="Minh Vương Home Luxury" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div>
+            <div class="text-base sm:text-lg font-black tracking-tight text-slate-900 flex items-center gap-1 leading-tight">
+              <span class="bg-gradient-to-r from-amber-600 via-amber-700 to-yellow-600 bg-clip-text text-transparent font-extrabold">MINH VƯƠNG</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-300/70 font-black uppercase ml-0.5">LUXURY</span>
+            </div>
+            <div class="text-[9.5px] text-slate-500 font-bold tracking-wider uppercase mt-0.5">Home Luxury & Bản Đồ Số</div>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-600" id="desktop-nav-links">
+          <a href="index.html" data-nav="index" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="map-search.html" data-nav="map-search" class="nav-link px-3.5 py-2 rounded-xl text-blue-600 font-bold bg-blue-50/80 shadow-xs transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-map-location-dot text-rose-500 text-xs"></i>
+            <span>Bản đồ số</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white animate-pulse">HOT</span>
+          </a>
+          <a href="projects.html" data-nav="projects" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-building text-xs"></i>
+            <span>Dự án đô thị</span>
+          </a>
+          <a href="services.html" data-nav="services" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-handshake text-blue-500 text-xs"></i>
+            <span>Dịch vụ</span>
+          </a>
+          <a href="reviews.html" data-nav="reviews" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-star text-amber-500 text-xs"></i>
+            <span>Đánh giá</span>
+          </a>
+          <a href="contact.html" data-nav="contact" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-headset text-xs"></i>
+            <span>Liên hệ</span>
+          </a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <!-- Hotline -->
+          <a href="tel:19006868" class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl transition-colors">
+            <i class="fa-solid fa-phone-volume text-rose-500"></i>
+            <span>1900 6868</span>
+          </a>
+
+          <!-- Nút Đăng tin (Chuyển trang Wizard) -->
+          <a href="post-property.html" data-nav="post-property" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Đăng tin miễn phí</span>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Mở menu" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+            <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu-dropdown" class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 py-3 space-y-1 shadow-xl">
+      <a href="index.html" data-nav="index" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-house w-5 text-center text-blue-600"></i>
+        <span>Trang chủ</span>
+      </a>
+      <a href="map-search.html" data-nav="map-search" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold bg-blue-50 text-blue-600 font-bold transition-all">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-map-location-dot w-5 text-center text-rose-500"></i>
+          <span>Bản đồ số quy hoạch</span>
+        </div>
+        <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white">HOT</span>
+      </a>
+      <a href="projects.html" data-nav="projects" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-building w-5 text-center text-indigo-600"></i>
+        <span>Dự án đô thị</span>
+      </a>
+      <a href="services.html" data-nav="services" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-handshake w-5 text-center text-blue-600"></i>
+        <span>Dịch vụ BĐS trọn gói</span>
+      </a>
+      <a href="reviews.html" data-nav="reviews" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-star w-5 text-center text-amber-500"></i>
+        <span>Đánh giá từ khách hàng</span>
+      </a>
+      <a href="contact.html" data-nav="contact" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-headset w-5 text-center text-blue-600"></i>
+        <span>Liên hệ & Hỗ trợ 24/7</span>
+      </a>
+      <div class="pt-3 mt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600 px-3">
+        <span>Hotline hỗ trợ 24/7:</span>
+        <a href="tel:19006868" class="text-rose-600 flex items-center gap-1.5 hover:underline">
+          <i class="fa-solid fa-phone"></i> 1900 6868
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUB-HEADER BỘ LỌC BẢN ĐỒ ================= -->
+  <div class="bg-white border-b border-slate-200 px-4 py-2 flex items-center justify-between z-30 flex-shrink-0 shadow-xs">
+    <div class="flex items-center gap-3">
+      <!-- Quick Search Bar -->
+      <div class="relative w-44 sm:w-64">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <input 
+          type="text" 
+          id="map-filter-keyword"
+          placeholder="Tìm quận, huyện, dự án..." 
+          class="w-full pl-8 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
+      </div>
+
+      <!-- Bộ chọn Tỉnh/Thành phố -->
+      <select id="map-select-city" class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white text-xs font-semibold focus:outline-none cursor-pointer">
+        <option value="all">📍 Toàn quốc</option>
+        <option value="cantho">📍 Cần Thơ</option>
+        <option value="hcm">TP. Hồ Chí Minh</option>
+        <option value="hn">Hà Nội</option>
+        <option value="danang">Đà Nẵng</option>
+      </select>
+
+      <!-- Bộ chọn Loại BĐS -->
+      <select id="map-select-type" class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white text-xs font-semibold focus:outline-none cursor-pointer hidden md:inline-block">
+        <option value="all">Tất cả loại hình</option>
+        <option value="apartment">Căn hộ</option>
+        <option value="house">Nhà phố</option>
+        <option value="villa">Biệt thự</option>
+        <option value="land">Đất nền</option>
+      </select>
+    </div>
+
+    <!-- Actions Bên phải thanh công cụ -->
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors flex items-center gap-1.5">
+        <i class="fa-solid fa-table-cells-large"></i>
+        <span class="hidden sm:inline">Xem dạng sàn</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= MAIN MAP WORKSPACE ================= -->
+  <div class="flex-1 flex relative overflow-hidden">
+    
+    <!-- THANH DANH SÁCH BÊN TRÁI (SIDEBAR) -->
+    <aside id="map-sidebar" class="w-full sm:w-96 lg:w-[420px] bg-white border-r border-slate-200 flex flex-col h-full z-20 transition-all duration-300 shadow-xl flex-shrink-0">
+      
+      <!-- Header Sidebar -->
+      <div class="p-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+        <div>
+          <span id="map-result-count" class="font-black text-slate-900 text-sm">8 Bất động sản</span>
+          <div id="map-radius-status" class="text-[11px] text-slate-400">Di chuyển bản đồ hoặc chọn bán kính để lọc</div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-toggle-sort" class="px-2.5 py-1 rounded-lg bg-blue-50 text-xs text-blue-600 font-bold hover:bg-blue-100 transition-colors flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-wide-short"></i>
+            <span id="sort-label">Giá tăng dần</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Danh sách thẻ cuộn dọc -->
+      <div id="map-sidebar-list" class="flex-1 overflow-y-auto p-3.5 space-y-3">
+        <!-- Render động qua JS -->
+      </div>
+    </aside>
+
+    <!-- KHUNG BẢN ĐỒ TOÀN MÀN HÌNH -->
+    <main class="flex-1 relative h-full">
+      
+      <!-- BẢN ĐỒ LEAFLET -->
+      <div id="fullscreen-map" class="w-full h-full z-10"></div>
+
+      <!-- BỘ ĐIỀU KHIỂN NỔI TRÊN BẢN ĐỒ (FLOATING CONTROLS) -->
+      <div class="absolute top-4 right-4 z-20 flex flex-col gap-2">
+        
+        <!-- Nút chuyển Layer Vệ Tinh / Đường Phố -->
+        <div class="bg-white rounded-2xl p-1.5 shadow-lg border border-slate-200 flex flex-col gap-1">
+          <button id="btn-layer-streets" onclick="switchMapLayer('streets')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-map"></i>
+            <span>Đường phố</span>
+          </button>
+          <button id="btn-layer-satellite" onclick="switchMapLayer('satellite')" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5">
+            <i class="fa-solid fa-earth-americas"></i>
+            <span>Vệ tinh</span>
+          </button>
+        </div>
+
+        <!-- Công cụ bán kính tiện ích -->
+        <div class="bg-white rounded-2xl p-2 shadow-lg border border-slate-200">
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 px-1">Bán kính quét:</div>
+          <div class="flex gap-1">
+            <button id="btn-radius-2000" onclick="drawRadiusCircle(2000)" class="px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600 transition-colors">2km</button>
+            <button id="btn-radius-5000" onclick="drawRadiusCircle(5000)" class="px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600 transition-colors">5km</button>
+            <button onclick="clearRadiusCircle()" class="px-2 py-1 rounded-lg text-xs font-bold text-rose-500 hover:bg-rose-50 transition-colors">Xóa</button>
+          </div>
+        </div>
+
+        <!-- Nút mở Google Maps gốc -->
+        <a href="https://www.google.com/maps/place/10%C2%B002'02.8%22N+105%C2%B047'15.0%22E/@10.0341,105.7875,15z" target="_blank" class="bg-white rounded-2xl p-2.5 shadow-lg border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-600 flex items-center justify-center gap-1.5 transition-colors">
+          <i class="fa-solid fa-arrow-up-right-from-square text-rose-500"></i>
+          <span>Google Maps</span>
+        </a>
+
+      </div>
+
+      <!-- Nút đóng/mở sidebar trên Mobile -->
+      <button 
+        id="btn-toggle-sidebar" 
+        onclick="toggleSidebar()"
+        class="sm:hidden absolute bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 px-5 py-2.5 rounded-full bg-slate-900 text-white font-bold text-xs shadow-2xl flex items-center gap-2">
+        <i class="fa-solid fa-list"></i>
+        <span id="sidebar-toggle-text">Hiện danh sách BĐS</span>
+      </button>
+
+    </main>
+  </div>
+
+  <!-- Leaflet JS CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Navbar Script -->
+  <script src="js/navbar.js"></script>
+  <!-- Data Script -->
+  <script src="js/data.js"></script>
+
+  <!-- Script điều khiển Fullscreen Map -->
+  <script>
+    let fullMap = null;
+    let streetTileLayer = null;
+    let satelliteTileLayer = null;
+    let currentLayerType = "streets";
+    let mapMarkers = {};
+    let activeRadiusCircle = null;
+    let activeRadiusMeters = 0;
+    let activeRadiusCenter = null;
+    let sortMode = "default"; // 'default', 'asc', 'desc'
+    let sidebarOpen = true;
+    let runMapFilterFn = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initFullscreenMap();
+      initMapFilters();
+      if (runMapFilterFn) runMapFilterFn(true);
+    });
+
+    function initFullscreenMap() {
+      fullMap = L.map("fullscreen-map", {
+        zoomControl: false,
+        attributionControl: false
+      }).setView([10.0341, 105.7875], 15);
+
+      // Thêm nút Zoom ở góc dưới phải
+      L.control.zoom({ position: 'bottomright' }).addTo(fullMap);
+
+      // Lớp đường phố Google Maps
+      streetTileLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: 'Google Maps'
+      }).addTo(fullMap);
+
+      // Lớp vệ tinh kết hợp nhãn Google Maps Hybrid
+      satelliteTileLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: 'Google Maps'
+      });
+    }
+
+    function switchMapLayer(layer) {
+      if (layer === currentLayerType) return;
+      currentLayerType = layer;
+
+      const btnStreets = document.getElementById("btn-layer-streets");
+      const btnSatellite = document.getElementById("btn-layer-satellite");
+
+      if (layer === 'satellite') {
+        fullMap.removeLayer(streetTileLayer);
+        fullMap.addLayer(satelliteTileLayer);
+        btnSatellite.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs flex items-center gap-1.5";
+        btnStreets.className = "px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5";
+      } else {
+        fullMap.removeLayer(satelliteTileLayer);
+        fullMap.addLayer(streetTileLayer);
+        btnStreets.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs flex items-center gap-1.5";
+        btnSatellite.className = "px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5";
+      }
+    }
+
+    function drawRadiusCircle(meters) {
+      if (activeRadiusCircle) fullMap.removeLayer(activeRadiusCircle);
+      const center = fullMap.getCenter();
+      activeRadiusMeters = meters;
+      activeRadiusCenter = center;
+
+      activeRadiusCircle = L.circle(center, {
+        color: '#2563eb',
+        fillColor: '#3b82f6',
+        fillOpacity: 0.15,
+        radius: meters
+      }).addTo(fullMap);
+      fullMap.fitBounds(activeRadiusCircle.getBounds());
+
+      // Cập nhật nút active
+      const btn2k = document.getElementById("btn-radius-2000");
+      const btn5k = document.getElementById("btn-radius-5000");
+      if (btn2k && btn5k) {
+        btn2k.className = meters === 2000
+          ? "px-2 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white"
+          : "px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600";
+        btn5k.className = meters === 5000
+          ? "px-2 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white"
+          : "px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600";
+      }
+
+      const statusEl = document.getElementById("map-radius-status");
+      if (statusEl) {
+        statusEl.innerHTML = `<span class="text-blue-600 font-bold"><i class="fa-solid fa-bullseye mr-1"></i>Đang lọc trong bán kính ${meters / 1000}km quanh tâm bản đồ</span>`;
+      }
+
+      if (runMapFilterFn) runMapFilterFn(false);
+    }
+
+    function clearRadiusCircle() {
+      if (activeRadiusCircle) {
+        fullMap.removeLayer(activeRadiusCircle);
+        activeRadiusCircle = null;
+      }
+      activeRadiusMeters = 0;
+      activeRadiusCenter = null;
+
+      const btn2k = document.getElementById("btn-radius-2000");
+      const btn5k = document.getElementById("btn-radius-5000");
+      if (btn2k) btn2k.className = "px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600";
+      if (btn5k) btn5k.className = "px-2 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-blue-50 hover:text-blue-600";
+
+      const statusEl = document.getElementById("map-radius-status");
+      if (statusEl) {
+        statusEl.textContent = "Di chuyển bản đồ hoặc chọn bán kính để lọc";
+      }
+
+      if (runMapFilterFn) runMapFilterFn(true);
+    }
+
+    function updateMapPins(properties, shouldFitBounds = true) {
+      Object.values(mapMarkers).forEach(m => fullMap.removeLayer(m));
+      mapMarkers = {};
+
+      const latLngs = [];
+
+      properties.forEach(prop => {
+        if (!prop.lat || !prop.lng) return;
+        latLngs.push([prop.lat, prop.lng]);
+
+        const markerHtml = `
+          <div class="custom-price-marker" id="fmarker-${prop.id}">
+            <div class="price-pill">
+              <i class="fa-solid fa-tag text-[9px] opacity-75"></i>
+              <span>${prop.price}</span>
+            </div>
+            <div class="price-pill-tail"></div>
+          </div>
+        `;
+
+        const icon = L.divIcon({
+          html: markerHtml,
+          iconSize: [80, 36],
+          iconAnchor: [40, 36],
+          popupAnchor: [0, -36]
+        });
+
+        const popupContent = `
+          <div class="w-64 bg-white rounded-2xl overflow-hidden font-sans">
+            <div class="relative h-32 w-full overflow-hidden">
+              <img src="${prop.images[0]}" alt="${prop.title}" class="w-full h-full object-cover" />
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-bold text-white ${prop.badgeColor || 'bg-blue-600'}">
+                ${prop.badge}
+              </span>
+            </div>
+            <div class="p-3">
+              <div class="text-rose-600 font-black text-sm mb-1">${prop.price} <span class="text-xs text-slate-500 font-normal">(${prop.unitPrice})</span></div>
+              <h4 class="font-bold text-slate-900 text-xs line-clamp-2 mb-2">${prop.title}</h4>
+              <div class="text-[11px] text-slate-500 flex items-center gap-2 mb-3">
+                <span>${prop.area} m²</span> • <span>${prop.bedrooms} PN</span> • <span>${prop.direction}</span>
+              </div>
+              <a href="property-detail.html?id=${prop.id}" class="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold text-center block transition-colors">
+                Xem trang chi tiết &rarr;
+              </a>
+            </div>
+          </div>
+        `;
+
+        const marker = L.marker([prop.lat, prop.lng], { icon })
+          .bindPopup(popupContent)
+          .addTo(fullMap);
+
+        mapMarkers[prop.id] = marker;
+      });
+
+      if (shouldFitBounds && latLngs.length > 0) {
+        fullMap.fitBounds(latLngs, { padding: [50, 50], maxZoom: 14 });
+      }
+    }
+
+    function renderSidebarList(properties) {
+      const container = document.getElementById("map-sidebar-list");
+      document.getElementById("map-result-count").textContent = `${properties.length} Bất động sản`;
+
+      if (properties.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <i class="fa-solid fa-house-circle-xmark text-4xl mb-2 text-slate-300"></i>
+            <p class="text-xs font-semibold mb-3">Không có BĐS nào khớp với vùng/bộ lọc hiện tại</p>
+            ${activeRadiusMeters > 0 ? `<button onclick="clearRadiusCircle()" class="px-3.5 py-1.5 bg-blue-600 text-white rounded-xl text-xs font-bold">Xóa giới hạn bán kính</button>` : ''}
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = properties.map(prop => `
+        <div 
+          id="item-${prop.id}"
+          onmouseenter="highlightPin(${prop.id})"
+          onmouseleave="unhighlightPin(${prop.id})"
+          onclick="focusOnMap(${prop.id})"
+          class="bg-white rounded-2xl border border-slate-200/80 hover:border-blue-500 p-2.5 flex gap-3 cursor-pointer shadow-xs hover:shadow-md transition-all group">
+          
+          <div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 relative">
+            <img src="${prop.images[0]}" alt="${prop.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[9px] font-bold text-white ${prop.badgeColor || 'bg-blue-600'}">
+              ${prop.badge}
+            </span>
+          </div>
+
+          <div class="flex-1 flex flex-col justify-between py-0.5 min-w-0">
+            <div>
+              <div class="text-rose-600 font-extrabold text-sm">${prop.price} <span class="text-[10px] text-slate-400 font-normal">(${prop.unitPrice})</span></div>
+              <h4 class="font-bold text-slate-800 text-xs line-clamp-2 group-hover:text-blue-600 transition-colors mt-0.5 leading-snug">${prop.title}</h4>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+              <span>${prop.area} m² • ${prop.bedrooms} PN</span>
+              <a href="property-detail.html?id=${prop.id}" onclick="event.stopPropagation()" class="text-blue-600 hover:underline font-bold text-[10px]">
+                Chi tiết &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join("") + `
+        <div class="bg-slate-900 text-slate-400 text-xs p-4 sm:p-5 rounded-3xl mt-4 border border-slate-800 space-y-3">
+          <div class="flex items-center gap-2 text-white font-black text-sm">
+            <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs">
+              <i class="fa-solid fa-city"></i>
+            </div>
+            <span>BĐS<span class="text-blue-500">VIỆT</span> Hub</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            Hệ sinh thái công nghệ bất động sản số 1 Việt Nam với bản đồ số và thẩm định giá.
+          </p>
+          <div class="text-[11px] text-slate-300">
+            Hotline hỗ trợ: <strong class="text-rose-500 font-extrabold text-sm ml-1">1900 6868</strong>
+          </div>
+          <div class="text-[10px] text-slate-500 pt-2 border-t border-slate-800 flex items-center justify-between">
+            <span>Phiên bản 2.5 Web Portal</span>
+            <span>Bảo mật SSL 256-bit</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function highlightPin(id) {
+      const pin = document.getElementById(`fmarker-${id}`);
+      if (pin) pin.classList.add("marker-highlight");
+    }
+
+    function unhighlightPin(id) {
+      const pin = document.getElementById(`fmarker-${id}`);
+      if (pin) pin.classList.remove("marker-highlight");
+    }
+
+    function focusOnMap(id) {
+      const marker = mapMarkers[id];
+      if (marker) {
+        fullMap.setView(marker.getLatLng(), 15, { animate: true });
+        marker.openPopup();
+      }
+    }
+
+    function initMapFilters() {
+      const citySelect = document.getElementById("map-select-city");
+      const typeSelect = document.getElementById("map-select-type");
+      const keywordInput = document.getElementById("map-filter-keyword");
+      const btnSort = document.getElementById("btn-toggle-sort");
+      const sortLabel = document.getElementById("sort-label");
+
+      runMapFilterFn = (shouldFitBounds = true) => {
+        const city = citySelect.value;
+        const type = typeSelect ? typeSelect.value : "all";
+        const keyword = keywordInput.value.toLowerCase().trim();
+
+        let filtered = REAL_ESTATE_DATA.filter(p => {
+          if (city !== "all" && p.city !== city) return false;
+          if (type !== "all" && p.type !== type) return false;
+          if (keyword && !p.title.toLowerCase().includes(keyword) && !p.address.toLowerCase().includes(keyword)) return false;
+          if (activeRadiusMeters > 0 && activeRadiusCenter && fullMap) {
+            const dist = fullMap.distance(activeRadiusCenter, [p.lat, p.lng]);
+            if (dist > activeRadiusMeters) return false;
+          }
+          return true;
+        });
+
+        if (sortMode === "asc") {
+          filtered = [...filtered].sort((a, b) => a.priceValue - b.priceValue);
+        } else if (sortMode === "desc") {
+          filtered = [...filtered].sort((a, b) => b.priceValue - a.priceValue);
+        }
+
+        renderSidebarList(filtered);
+        updateMapPins(filtered, shouldFitBounds);
+      };
+
+      citySelect.addEventListener("change", () => {
+        // Nếu đang bật bán kính mà chuyển tỉnh thì tự xóa vòng bán kính cũ
+        if (activeRadiusCircle) {
+          fullMap.removeLayer(activeRadiusCircle);
+          activeRadiusCircle = null;
+          activeRadiusMeters = 0;
+          activeRadiusCenter = null;
+        }
+        const cityObj = CITIES.find(c => c.id === citySelect.value);
+        if (cityObj && fullMap && citySelect.value !== "all") {
+          fullMap.setView(cityObj.center, cityObj.zoom);
+        }
+        runMapFilterFn(true);
+      });
+
+      if (typeSelect) typeSelect.addEventListener("change", () => runMapFilterFn(true));
+      keywordInput.addEventListener("input", () => runMapFilterFn(true));
+
+      if (btnSort) {
+        btnSort.addEventListener("click", () => {
+          if (sortMode === "default") {
+            sortMode = "asc";
+            if (sortLabel) sortLabel.textContent = "Giá: Thấp ➔ Cao";
+          } else if (sortMode === "asc") {
+            sortMode = "desc";
+            if (sortLabel) sortLabel.textContent = "Giá: Cao ➔ Thấp";
+          } else {
+            sortMode = "default";
+            if (sortLabel) sortLabel.textContent = "Sắp xếp mặc định";
+          }
+          runMapFilterFn(false);
+        });
+      }
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("map-sidebar");
+      const text = document.getElementById("sidebar-toggle-text");
+      sidebar.classList.toggle("hidden");
+      const isHidden = sidebar.classList.contains("hidden");
+      text.textContent = isHidden ? "Hiện danh sách BĐS" : "Ẩn danh sách BĐS";
+    }
+  </script>
+</body>
+</html>

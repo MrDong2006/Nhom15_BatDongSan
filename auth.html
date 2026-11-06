@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng Nhập & Tài Khoản Thành Viên - Minh Vương Home Luxury</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <div id="app-navbar"></div>
+
+  <!-- ================= MAIN AUTH CONTAINER ================= -->
+  <main class="flex-1 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Hiệu ứng ánh sáng trang trí -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl border border-slate-200/80 overflow-hidden grid grid-cols-1 lg:grid-cols-12 relative z-10">
+      
+      <!-- CỘT TRÁI: BANNER THƯƠNG HIỆU & ĐẶC QUYỀN THÀNH VIÊN -->
+      <div class="lg:col-span-5 bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-2xl"></div>
+
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-[11px] font-bold mb-6">
+            <i class="fa-solid fa-crown text-amber-400"></i>
+            <span>HỆ SINH THÁI BẤT ĐỘNG SẢN SỐ 1</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl font-black leading-tight mb-4">
+            Chào Mừng Đến Với <br />
+            <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-amber-300 bg-clip-text text-transparent">Minh Vương Home Luxury</span>
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-8">
+            Đăng nhập để lưu bất động sản yêu thích, so sánh giá trực quan, nhận cảnh báo quy hoạch và quản lý tin đăng ký gửi chính chủ.
+          </p>
+
+          <!-- Danh sách đặc quyền -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-3.5 bg-white/5 backdrop-blur-md p-3.5 rounded-2xl border border-white/10">
+              <div class="w-9 h-9 rounded-xl bg-blue-600/30 text-blue-300 flex items-center justify-center flex-shrink-0 text-sm">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-white">Tra cứu quy hoạch & Bản đồ số</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Xem tọa độ vệ tinh chuẩn xác và tiện ích bán kính 2km - 5km.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 bg-white/5 backdrop-blur-md p-3.5 rounded-2xl border border-white/10">
+              <div class="w-9 h-9 rounded-xl bg-rose-500/30 text-rose-300 flex items-center justify-center flex-shrink-0 text-sm">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-white">Đồng bộ Tin đã lưu & So sánh</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Lưu danh sách căn hộ quan tâm và đặt lên bàn cân đối chiếu thông số.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 bg-white/5 backdrop-blur-md p-3.5 rounded-2xl border border-white/10">
+              <div class="w-9 h-9 rounded-xl bg-emerald-500/30 text-emerald-300 flex items-center justify-center flex-shrink-0 text-sm">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-white">Đăng tin ký gửi duyệt tức thì</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Ghim nhà đất trực tiếp lên bản đồ trang chủ hoàn toàn miễn phí.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Đánh giá mini dưới đáy cột trái -->
+        <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+          <div class="flex items-center gap-2">
+            <div class="flex -space-x-2">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full border-2 border-slate-900 object-cover" />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full border-2 border-slate-900 object-cover" />
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&q=80" class="w-7 h-7 rounded-full border-2 border-slate-900 object-cover" />
+            </div>
+            <span class="text-[11px] font-semibold">50,000+ Thành viên tin dùng</span>
+          </div>
+          <span class="text-amber-400 font-bold"><i class="fa-solid fa-star"></i> 4.9/5</span>
+        </div>
+      </div>
+
+      <!-- CỘT PHẢI: KHUNG FORM ĐĂNG NHẬP / ĐĂNG KÝ / HỒ SƠ ĐÃ ĐĂNG NHẬP -->
+      <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+        
+        <!-- TRẠNG THÁI 1: KHI ĐÃ ĐĂNG NHẬP (HIỂN THỊ BẢNG ĐIỀU KHIỂN CÁ NHÂN) -->
+        <div id="logged-in-panel" class="hidden space-y-6 animate-fadeIn">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-5">
+            <div class="flex items-center gap-4">
+              <img id="profile-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" class="w-16 h-16 rounded-2xl object-cover border-2 border-blue-500 shadow-md" />
+              <div>
+                <span id="profile-role-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-700 uppercase">Chuyên viên VIP</span>
+                <h2 id="profile-name" class="text-xl font-black text-slate-900 mt-1">Nguyễn Văn Hưng</h2>
+                <p id="profile-email" class="text-xs text-slate-500">hung.nguyen@minhvuongluxury.vn • 0908 123 456</p>
+              </div>
+            </div>
+            <button onclick="handleLogout()" class="px-4 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition-colors flex items-center gap-1.5">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Đăng xuất</span>
+            </button>
+          </div>
+
+          <!-- Thống kê nhanh tài khoản -->
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
+              <div id="stat-posted-count" class="text-2xl font-black text-blue-600">0</div>
+              <div class="text-[11px] font-semibold text-slate-600 mt-0.5">Tin bạn đã đăng</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-100">
+              <div id="stat-fav-count" class="text-2xl font-black text-rose-600">0</div>
+              <div class="text-[11px] font-semibold text-slate-600 mt-0.5">BĐS đã thả tim</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+              <div class="text-2xl font-black text-emerald-600">VIP</div>
+              <div class="text-[11px] font-semibold text-slate-600 mt-0.5">Hạng tài khoản</div>
+            </div>
+          </div>
+
+          <!-- Danh sách tin đã đăng của người dùng -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-extrabold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-building-circle-check text-blue-600"></i>
+                <span>Quản lý tin bạn đã đăng</span>
+              </h3>
+              <a href="post-property.html" class="text-xs font-bold text-blue-600 hover:underline">+ Đăng tin mới</a>
+            </div>
+            <div id="user-posts-list" class="space-y-2.5 max-h-56 overflow-y-auto pr-1">
+              <!-- Render bởi JS -->
+            </div>
+          </div>
+
+          <!-- Nút truy cập nhanh dành riêng cho Quản Trị Viên (Admin) -->
+          <div id="admin-entry-btn-wrapper" class="hidden">
+            <a href="admin.html" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black rounded-2xl text-xs sm:text-sm text-center shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-gauge-high text-base"></i>
+              <span>VÀO BẢNG ĐIỀU KHIỂN QUẢN TRỊ ADMIN (ADMIN.HTML)</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3">
+            <a href="index.html" class="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs text-center shadow-md shadow-blue-600/20 transition-all">
+              Về trang chủ sàn giao dịch
+            </a>
+            <a href="map-search.html" class="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs text-center transition-all">
+              Mở Bản đồ số toàn màn hình
+            </a>
+          </div>
+        </div>
+
+        <!-- TRẠNG THÁI 2: KHI CHƯA ĐĂNG NHẬP (TABS ĐĂNG NHẬP / ĐĂNG KÝ) -->
+        <div id="auth-forms-wrapper">
+          
+          <!-- Chuyển đổi Tab Đăng nhập / Đăng ký -->
+          <div class="flex bg-slate-100 p-1.5 rounded-2xl mb-6">
+            <button id="tab-btn-login" onclick="switchAuthTab('login')" class="flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white text-blue-600 shadow-xs transition-all">
+              Đăng nhập tài khoản
+            </button>
+            <button id="tab-btn-register" onclick="switchAuthTab('register')" class="flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 transition-all">
+              Đăng ký thành viên mới
+            </button>
+          </div>
+
+          <!-- ĐĂNG NHẬP NHANH 1-CLICK DÀNH CHO DEMO ĐỒ ÁN -->
+          <div class="mb-6 p-3.5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80">
+            <div class="text-[11px] font-extrabold text-blue-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i>
+              <span>Đăng nhập nhanh 1-Click (Dành cho Giảng viên & Chấm đồ án):</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button type="button" onclick="quickDemoLogin('admin')" class="px-2.5 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-500 hover:text-slate-950 text-amber-900 border border-amber-300 text-xs font-black transition-all flex items-center gap-2 shadow-2xs">
+                <i class="fa-solid fa-shield-halved text-amber-600"></i>
+                <div class="text-left">
+                  <div class="leading-tight">Quản Trị Viên</div>
+                  <div class="text-[10px] opacity-75 font-normal">admin@minhvuongluxury.vn</div>
+                </div>
+              </button>
+              <button type="button" onclick="quickDemoLogin('agent')" class="px-2.5 py-2 rounded-xl bg-white hover:bg-blue-600 hover:text-white text-slate-700 border border-blue-200 text-xs font-bold transition-all flex items-center gap-2 shadow-2xs">
+                <i class="fa-solid fa-user-tie text-blue-600"></i>
+                <div class="text-left">
+                  <div class="leading-tight">Môi Giới VIP</div>
+                  <div class="text-[10px] opacity-75 font-normal">Nguyễn Văn Hưng</div>
+                </div>
+              </button>
+              <button type="button" onclick="quickDemoLogin('customer')" class="px-2.5 py-2 rounded-xl bg-white hover:bg-emerald-600 hover:text-white text-slate-700 border border-emerald-200 text-xs font-bold transition-all flex items-center gap-2 shadow-2xs">
+                <i class="fa-solid fa-user-check text-emerald-600"></i>
+                <div class="text-left">
+                  <div class="leading-tight">Khách Hàng</div>
+                  <div class="text-[10px] opacity-75 font-normal">Trần Minh Khôi</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- FORM 1: ĐĂNG NHẬP -->
+          <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">Email hoặc Số điện thoại *</label>
+              <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="login-identifier" required value="hung.nguyen@minhvuongluxury.vn" placeholder="Nhập email hoặc số điện thoại..." class="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 focus:bg-white text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-bold text-slate-700">Mật khẩu *</label>
+                <a href="javascript:void(0)" onclick="showToast('Hệ thống đã gửi liên kết đặt lại mật khẩu vào email của bạn!', 'info')" class="text-[11px] font-semibold text-blue-600 hover:underline">Quên mật khẩu?</a>
+              </div>
+              <div class="relative">
+                <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="password" id="login-password" required value="12345678" placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 focus:bg-white text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
+                <button type="button" onclick="togglePasswordVisibility('login-password')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-600 pt-1">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500" />
+                <span>Duy trì đăng nhập trên thiết bị này</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-2xl text-xs sm:text-sm shadow-lg shadow-blue-600/25 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span>Đăng nhập vào hệ thống</span>
+            </button>
+          </form>
+
+          <!-- FORM 2: ĐĂNG KÝ -->
+          <form id="form-register" onsubmit="handleRegisterSubmit(event)" class="space-y-4 hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Họ và tên *</label>
+                <input type="text" id="reg-name" required placeholder="Ví dụ: Lê Hoàng Nam" class="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại Zalo *</label>
+                <input type="tel" id="reg-phone" required placeholder="Ví dụ: 0909 888 999" class="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Địa chỉ Email *</label>
+                <input type="email" id="reg-email" required placeholder="nam.le@gmail.com" class="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Vai trò của bạn *</label>
+                <select id="reg-role" class="w-full px-3.5 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                  <option value="Khách mua / thuê nhà">Khách mua / thuê nhà</option>
+                  <option value="Chính chủ ký gửi BĐS">Chính chủ ký gửi BĐS</option>
+                  <option value="Chuyên viên Môi giới">Chuyên viên Môi giới</option>
+                  <option value="Nhà đầu tư BĐS">Nhà đầu tư BĐS</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu khởi tạo *</label>
+              <input type="password" id="reg-password" required minlength="6" placeholder="Tối thiểu 6 ký tự..." class="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            </div>
+
+            <label class="flex items-start gap-2 text-xs text-slate-500 cursor-pointer">
+              <input type="checkbox" required checked class="rounded text-blue-600 mt-0.5" />
+              <span>Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật thông tin của Minh Vương Home Luxury.</span>
+            </label>
+
+            <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl text-xs sm:text-sm shadow-lg shadow-emerald-600/25 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Tạo tài khoản miễn phí</span>
+            </button>
+          </form>
+
+          <!-- Đăng nhập MXH -->
+          <div class="mt-6 pt-5 border-t border-slate-100">
+            <div class="text-center text-[11px] font-semibold text-slate-400 mb-3">Hoặc tiếp tục nhanh bằng tài khoản liên kết</div>
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" onclick="quickDemoLogin('agent')" class="py-2.5 px-4 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition-colors">
+                <i class="fa-brands fa-google text-rose-500 text-sm"></i>
+                <span>Google Account</span>
+              </button>
+              <button type="button" onclick="quickDemoLogin('customer')" class="py-2.5 px-4 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition-colors">
+                <i class="fa-solid fa-comment-dots text-blue-600 text-sm"></i>
+                <span>Tài khoản Zalo</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Container hiển thị thông báo Toast -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/navbar.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAuthState();
+    });
+
+    function switchAuthTab(tab) {
+      const loginForm = document.getElementById("form-login");
+      const regForm = document.getElementById("form-register");
+      const btnLogin = document.getElementById("tab-btn-login");
+      const btnReg = document.getElementById("tab-btn-register");
+
+      if (tab === "register") {
+        loginForm.classList.add("hidden");
+        regForm.classList.remove("hidden");
+        btnReg.className = "flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white text-blue-600 shadow-xs transition-all";
+        btnLogin.className = "flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 transition-all";
+      } else {
+        regForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+        btnLogin.className = "flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-white text-blue-600 shadow-xs transition-all";
+        btnReg.className = "flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 transition-all";
+      }
+    }
+
+    function togglePasswordVisibility(inputId) {
+      const el = document.getElementById(inputId);
+      if (el) {
+        el.type = el.type === "password" ? "text" : "password";
+      }
+    }
+
+    function quickDemoLogin(type) {
+      let demoUser;
+      const idInput = document.getElementById("login-identifier");
+      const passInput = document.getElementById("login-password");
+
+      if (type === "admin") {
+        if (idInput) idInput.value = "admin@minhvuongluxury.vn";
+        if (passInput) passInput.value = "admin123";
+
+        demoUser = {
+          name: "Quản Trị Viên Sàn",
+          email: "admin@minhvuongluxury.vn",
+          phone: "1900 6868",
+          role: "admin",
+          roleDisplay: "Quản trị viên Hệ thống",
+          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+        };
+
+        localStorage.setItem("bds_current_user", JSON.stringify(demoUser));
+        showToast("Đăng nhập Quản Trị Viên thành công! Đang chuyển hướng vào Trang Quản Trị...", "success");
+
+        // Chuyển hướng trực tiếp vào trang admin.html
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 400);
+        return;
+      } else if (type === "agent") {
+        if (idInput) idInput.value = "hung.nguyen@minhvuongluxury.vn";
+        if (passInput) passInput.value = "12345678";
+
+        demoUser = {
+          name: "Nguyễn Văn Hưng",
+          email: "hung.nguyen@minhvuongluxury.vn",
+          phone: "0908 123 456",
+          role: "agent",
+          roleDisplay: "Chuyên viên Môi giới VIP",
+          avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80"
+        };
+      } else {
+        if (idInput) idInput.value = "khoi.tran@gmail.com";
+        if (passInput) passInput.value = "12345678";
+
+        demoUser = {
+          name: "Trần Minh Khôi",
+          email: "khoi.tran@gmail.com",
+          phone: "0912 345 678",
+          role: "customer",
+          roleDisplay: "Khách mua & Nhà đầu tư",
+          avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80"
+        };
+      }
+
+      localStorage.setItem("bds_current_user", JSON.stringify(demoUser));
+      showToast(`Xin chào ${demoUser.name}! Đăng nhập thành công.`, "success");
+      checkAuthState();
+      if (window.BdsNavbar && window.BdsNavbar.init) window.BdsNavbar.init();
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const idVal = (document.getElementById("login-identifier").value || "").trim();
+      const idLower = idVal.toLowerCase();
+
+      // Kiểm tra nếu đăng nhập bằng tài khoản Quản trị viên (Admin)
+      const isAdmin = idLower.includes("admin") || idLower === "19006868" || idLower === "quantri";
+
+      if (isAdmin) {
+        const adminUser = {
+          name: "Quản Trị Viên Sàn",
+          email: idVal.includes("@") ? idVal : "admin@minhvuongluxury.vn",
+          phone: "1900 6868",
+          role: "admin",
+          roleDisplay: "Quản trị viên Hệ thống",
+          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+        };
+        localStorage.setItem("bds_current_user", JSON.stringify(adminUser));
+        showToast("Đăng nhập Quản Trị Viên thành công! Đang chuyển hướng vào Trang Quản Trị...", "success");
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 400);
+        return;
+      }
+
+      // Tài khoản Môi giới hoặc Khách hàng thông thường
+      const isAgent = idLower.includes("hung") || idLower.includes("agent") || idLower.includes("moi-gioi");
+      const user = {
+        name: isAgent ? "Nguyễn Văn Hưng" : (idVal.split("@")[0] || "Thành viên VIP"),
+        email: idVal.includes("@") ? idVal : `${idVal}@minhvuongluxury.vn`,
+        phone: "0908 123 456",
+        role: isAgent ? "agent" : "customer",
+        roleDisplay: isAgent ? "Chuyên viên Môi giới VIP" : "Khách hàng xác thực",
+        avatar: isAgent ? "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" : "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+      };
+      localStorage.setItem("bds_current_user", JSON.stringify(user));
+      showToast(`Chào mừng ${user.name} quay trở lại!`, "success");
+      checkAuthState();
+      if (window.BdsNavbar && window.BdsNavbar.init) window.BdsNavbar.init();
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("reg-name").value.trim();
+      const phone = document.getElementById("reg-phone").value.trim();
+      const email = document.getElementById("reg-email").value.trim();
+      const role = document.getElementById("reg-role").value;
+
+      const newUser = {
+        name,
+        phone,
+        email,
+        role,
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+      };
+
+      localStorage.setItem("bds_current_user", JSON.stringify(newUser));
+      showToast(`Đăng ký tài khoản "${name}" thành công!`, "success");
+      checkAuthState();
+      if (window.BdsNavbar && window.BdsNavbar.init) window.BdsNavbar.init();
+    }
+
+    function handleLogout() {
+      localStorage.removeItem("bds_current_user");
+      showToast("Đã đăng xuất tài khoản thành công.", "info");
+      checkAuthState();
+      if (window.BdsNavbar && window.BdsNavbar.init) window.BdsNavbar.init();
+    }
+
+    function deleteUserPost(id) {
+      const savedPosts = JSON.parse(localStorage.getItem("bds_user_posts") || "[]");
+      const updated = savedPosts.filter(p => p.id !== id);
+      localStorage.setItem("bds_user_posts", JSON.stringify(updated));
+      showToast("Đã xóa tin đăng khỏi hệ thống.", "info");
+      checkAuthState();
+    }
+
+    function checkAuthState() {
+      const user = JSON.parse(localStorage.getItem("bds_current_user") || "null");
+      const loggedPanel = document.getElementById("logged-in-panel");
+      const formsWrapper = document.getElementById("auth-forms-wrapper");
+
+      if (user) {
+        formsWrapper.classList.add("hidden");
+        loggedPanel.classList.remove("hidden");
+
+        document.getElementById("profile-name").textContent = user.name;
+        document.getElementById("profile-email").textContent = `${user.email} • ${user.phone}`;
+        document.getElementById("profile-role-badge").textContent = user.roleDisplay || user.role || "Thành viên VIP";
+        document.getElementById("profile-avatar").src = user.avatar || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80";
+
+        // Hiển thị nút vào trang Admin nếu là tài khoản Quản trị viên
+        const adminBtnWrapper = document.getElementById("admin-entry-btn-wrapper");
+        if (adminBtnWrapper) {
+          if (user.role === "admin") {
+            adminBtnWrapper.classList.remove("hidden");
+          } else {
+            adminBtnWrapper.classList.add("hidden");
+          }
+        }
+
+        const favs = JSON.parse(localStorage.getItem("bds_favorites") || "[]");
+        const userPosts = JSON.parse(localStorage.getItem("bds_user_posts") || "[]");
+
+        document.getElementById("stat-fav-count").textContent = favs.length;
+        document.getElementById("stat-posted-count").textContent = userPosts.length;
+
+        const postsContainer = document.getElementById("user-posts-list");
+        if (userPosts.length === 0) {
+          postsContainer.innerHTML = `
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center text-xs text-slate-500">
+              Bạn chưa có tin đăng ký gửi nào mới. <a href="post-property.html" class="text-blue-600 font-bold hover:underline">Đăng tin ngay &rarr;</a>
+            </div>
+          `;
+        } else {
+          postsContainer.innerHTML = userPosts.map(p => `
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <img src="${p.images[0]}" class="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
+                <div class="min-w-0">
+                  <a href="property-detail.html?id=${p.id}" class="text-xs font-bold text-slate-900 hover:text-blue-600 truncate block">${p.title}</a>
+                  <div class="text-[11px] text-rose-600 font-extrabold">${p.price} <span class="text-slate-400 font-normal">• ${p.area} m² • ${p.district}</span></div>
+                </div>
+              </div>
+              <button onclick="deleteUserPost(${p.id})" title="Xóa tin đăng" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center flex-shrink-0 text-xs">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          `).join("");
+        }
+      } else {
+        loggedPanel.classList.add("hidden");
+        formsWrapper.classList.remove("hidden");
+      }
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = `p-4 rounded-xl shadow-xl flex items-center gap-3 transition-all duration-300 text-sm font-semibold text-white ${
+        type === "success" ? "bg-emerald-600" : "bg-blue-600"
+      }`;
+      toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3200);
+    }
+  </script>
+</body>
+</html>

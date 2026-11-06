@@ -1,0 +1,71 @@
+@model List<Nhom15_BatDongSan.Models.Property>
+@{
+    ViewData["Title"] = "Bản Đồ Số Tìm Kiếm Toàn Màn Hình";
+}
+
+<div class="h-[calc(100vh-80px)] flex flex-col md:flex-row overflow-hidden">
+    
+    <!-- Sidebar List -->
+    <div class="w-full md:w-96 bg-white border-r border-slate-200 flex flex-col overflow-y-auto p-4 space-y-4">
+        <div>
+            <h2 class="text-base font-black text-slate-900">Bản Đồ Số Bất Động Sản</h2>
+            <p class="text-xs text-slate-500">Đồng bộ GPS Leaflet 2 chiều (@Model.Count vị trí)</p>
+        </div>
+
+        <div class="space-y-3">
+            @foreach (var item in Model)
+            {
+                <div onclick="focusMap(@item.Latitude, @item.Longitude, '@item.Title')" class="p-3 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition-all bg-slate-50">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[10px] font-bold text-blue-600 uppercase">@item.CategoryName</span>
+                        <span class="text-xs font-black text-rose-600">@item.PriceDisplay</span>
+                    </div>
+                    <div class="text-xs font-bold text-slate-900 line-clamp-1">@item.Title</div>
+                    <div class="text-[11px] text-slate-500 truncate mt-1">@item.Address</div>
+                    <div class="mt-2 text-[10px] text-slate-400 font-mono">GPS: @item.Latitude, @item.Longitude</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="flex-1 h-full relative">
+        <div id="fullscreen-map" class="w-full h-full"></div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        var map;
+        var markers = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Default center at Can Tho office (10.0341, 105.7875)
+            map = L.map('fullscreen-map').setView([10.0341, 105.7875], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            @foreach (var p in Model)
+            {
+                <text>
+                var m_@p.Id = L.marker([@p.Latitude, @p.Longitude]).addTo(map)
+                    .bindPopup('<b>@Html.Raw(p.Title)</b><br><span style="color:red;font-weight:bold;">@Html.Raw(p.PriceDisplay)</span><br><a href="/Property/Details/@p.Id" style="color:blue;">Xem chi tiết</a>');
+                markers.push({ lat: @p.Latitude, lng: @p.Longitude, marker: m_@p.Id });
+                </text>
+            }
+        });
+
+        function focusMap(lat, lng, title) {
+            if (map) {
+                map.flyTo([lat, lng], 16, { duration: 1.5 });
+                var found = markers.find(m => Math.abs(m.lat - lat) < 0.0001 && Math.abs(m.lng - lng) < 0.0001);
+                if (found && found.marker) {
+                    found.marker.openPopup();
+                }
+            }
+        }
+    </script>
+}

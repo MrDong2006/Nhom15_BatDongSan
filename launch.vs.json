@@ -1,0 +1,22 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "node",
+      "project": "server.js",
+      "name": "server.js (Node.js Server)",
+      "args": [],
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:3000"
+    },
+    {
+      "type": "default",
+      "project": "package.json",
+      "name": "npm start",
+      "args": [ "start" ],
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:3000"
+    }
+  ]
+}

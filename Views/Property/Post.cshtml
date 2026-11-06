@@ -1,0 +1,131 @@
+@model Nhom15_BatDongSan.Models.Property
+@{
+    ViewData["Title"] = "Đăng Tin Ký Gửi Bất Động Sản";
+    var categories = ViewBag.Categories as List<Nhom15_BatDongSan.Models.Category> ?? new();
+}
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-6">
+    <div class="text-center space-y-2">
+        <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase">Quy Trình Đăng Tin Chuẩn Sàn</span>
+        <h1 class="text-3xl font-black text-slate-900">Đăng Tin Mua Bán / Cho Thuê Nhà Đất</h1>
+        <p class="text-xs text-slate-500">Tiếp cận hơn 50,000+ lượt khách hàng tìm kiếm mỗi ngày</p>
+    </div>
+
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <form method="post" asp-controller="Property" asp-action="Post" class="space-y-6">
+            @Html.AntiForgeryToken()
+
+            <!-- Basic Info -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-extrabold text-slate-900 pb-2 border-b border-slate-100">1. Thông Tin Cơ Bản</h3>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Tiêu đề tin đăng *</label>
+                    <input type="text" name="Title" required placeholder="Ví dụ: Bán căn hộ The Beverly 2PN view công viên..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Hình thức</label>
+                        <select name="TransactionType" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <option value="sale">Cần Bán</option>
+                            <option value="rent">Cho Thuê</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Loại hình BĐS</label>
+                        <select name="Category" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            @foreach (var c in categories)
+                            {
+                                <option value="@c.Code">@c.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Khu vực</label>
+                        <select name="CityCode" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <option value="cantho">Cần Thơ</option>
+                            <option value="hcm">TP. Hồ Chí Minh</option>
+                            <option value="hn">Hà Nội</option>
+                            <option value="danang">Đà Nẵng</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Địa chỉ cụ thể *</label>
+                        <input type="text" name="Address" required placeholder="Số nhà, đường, phường..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Quận / Huyện *</label>
+                        <input type="text" name="District" required placeholder="Quận Ninh Kiều, TP. Thủ Đức..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing & Specs -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-extrabold text-slate-900 pb-2 border-b border-slate-100">2. Giá Cả & Thông Số Kỹ Thuật</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Giá hiển thị *</label>
+                        <input type="text" name="PriceDisplay" required placeholder="Ví dụ: 3.2 Tỷ hoặc 15 Tr/tháng" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Diện tích (m²) *</label>
+                        <input type="number" step="0.1" name="AreaSqm" required placeholder="75" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Đơn giá</label>
+                        <input type="text" name="UnitPrice" placeholder="42.6 tr/m²" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Số phòng ngủ</label>
+                        <input type="number" name="Bedrooms" value="2" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Số phòng tắm/WC</label>
+                        <input type="number" name="Bathrooms" value="2" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Hướng nhà</label>
+                        <input type="text" name="Direction" value="Đông Nam" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-extrabold text-slate-900 pb-2 border-b border-slate-100">3. Mô Tả Chi Tiết & Tọa Độ GPS</h3>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Mô tả chi tiết *</label>
+                    <textarea name="Description" rows="4" required placeholder="Mô tả ưu điểm, tiện ích lân cận, tình trạng sổ đỏ..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Vĩ độ GPS (Latitude)</label>
+                        <input type="number" step="0.0001" name="Latitude" value="10.0341" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kinh độ GPS (Longitude)</label>
+                        <input type="number" step="0.0001" name="Longitude" value="105.7875" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-xs transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-check"></i>
+                <span>Hoàn Tất & Đăng Tin Lên Hệ Thống</span>
+            </button>
+        </form>
+    </div>
+</div>

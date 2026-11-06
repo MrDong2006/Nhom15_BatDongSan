@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Chi Tiết Bất Động Sản - Minh Vương Home Luxury</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+  <!-- ================= TOP NOTIFICATION / MARKET TICKER ================= -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px] uppercase">Thị trường</span>
+        <span class="truncate">Lãi suất vay mua nhà các ngân hàng Big 4 tháng 10/2026 ổn định từ 5.8%/năm • Cập nhật giá căn hộ Thủ Đức tăng 3.2%</span>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-[11px] text-slate-400">
+        <a href="loan-calculator.html" class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-calculator mr-1"></i>Tính lãi vay</a>
+        <a href="map-search.html" class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-map-location-dot mr-1"></i>Bản đồ số quy hoạch</a>
+        <span>Hotline: <strong class="text-white">1900 6868</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group flex-shrink-0">
+          <div class="w-11 h-11 rounded-2xl overflow-hidden border border-amber-200/70 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-all bg-white p-0.5 flex-shrink-0">
+            <img src="images/logo.jpg" alt="Minh Vương Home Luxury" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div>
+            <div class="text-base sm:text-lg font-black tracking-tight text-slate-900 flex items-center gap-1 leading-tight">
+              <span class="bg-gradient-to-r from-amber-600 via-amber-700 to-yellow-600 bg-clip-text text-transparent font-extrabold">MINH VƯƠNG</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-300/70 font-black uppercase ml-0.5">LUXURY</span>
+            </div>
+            <div class="text-[9.5px] text-slate-500 font-bold tracking-wider uppercase mt-0.5">Home Luxury & Bản Đồ Số</div>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-600" id="desktop-nav-links">
+          <a href="index.html" data-nav="index" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="map-search.html" data-nav="map-search" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-map-location-dot text-rose-500 text-xs"></i>
+            <span>Bản đồ số</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white animate-pulse">HOT</span>
+          </a>
+          <a href="projects.html" data-nav="projects" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-building text-xs"></i>
+            <span>Dự án đô thị</span>
+          </a>
+          <a href="services.html" data-nav="services" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-handshake text-blue-500 text-xs"></i>
+            <span>Dịch vụ</span>
+          </a>
+          <a href="reviews.html" data-nav="reviews" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-star text-amber-500 text-xs"></i>
+            <span>Đánh giá</span>
+          </a>
+          <a href="contact.html" data-nav="contact" class="nav-link px-3.5 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-headset text-xs"></i>
+            <span>Liên hệ</span>
+          </a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <!-- Hotline -->
+          <a href="tel:19006868" class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl transition-colors">
+            <i class="fa-solid fa-phone-volume text-rose-500"></i>
+            <span>1900 6868</span>
+          </a>
+
+          <!-- Nút Đăng tin (Chuyển trang Wizard) -->
+          <a href="post-property.html" data-nav="post-property" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Đăng tin miễn phí</span>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Mở menu" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+            <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu-dropdown" class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 py-3 space-y-1 shadow-xl">
+      <a href="index.html" data-nav="index" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-house w-5 text-center text-blue-600"></i>
+        <span>Trang chủ</span>
+      </a>
+      <a href="map-search.html" data-nav="map-search" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-map-location-dot w-5 text-center text-rose-500"></i>
+          <span>Bản đồ số quy hoạch</span>
+        </div>
+        <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white">HOT</span>
+      </a>
+      <a href="projects.html" data-nav="projects" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-building w-5 text-center text-indigo-600"></i>
+        <span>Dự án đô thị</span>
+      </a>
+      <a href="services.html" data-nav="services" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-handshake w-5 text-center text-blue-600"></i>
+        <span>Dịch vụ BĐS trọn gói</span>
+      </a>
+      <a href="reviews.html" data-nav="reviews" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-star w-5 text-center text-amber-500"></i>
+        <span>Đánh giá từ khách hàng</span>
+      </a>
+      <a href="contact.html" data-nav="contact" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-headset w-5 text-center text-blue-600"></i>
+        <span>Liên hệ & Hỗ trợ 24/7</span>
+      </a>
+      <div class="pt-3 mt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600 px-3">
+        <span>Hotline hỗ trợ 24/7:</span>
+        <a href="tel:19006868" class="text-rose-600 flex items-center gap-1.5 hover:underline">
+          <i class="fa-solid fa-phone"></i> 1900 6868
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= BREADCRUMB ================= -->
+  <div class="bg-white border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 truncate">
+        <a href="index.html" class="hover:text-blue-600">Trang chủ</a>
+        <span>/</span>
+        <a href="index.html" id="breadcrumb-category" class="hover:text-blue-600">Nhà đất</a>
+        <span>/</span>
+        <span id="breadcrumb-title" class="text-slate-800 font-semibold truncate">Đang tải thông tin...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN DETAIL CONTENT ================= -->
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+    
+    <!-- Tiêu đề & Nút hành động nhanh -->
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span id="prop-badge" class="px-3 py-1 rounded-full text-xs font-extrabold text-white bg-rose-600 shadow-xs">VIP</span>
+          <span id="prop-type-name" class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">Căn hộ</span>
+          <span id="prop-code" class="text-xs text-slate-400 font-medium">Mã tin: BDS-00001</span>
+          <span class="text-slate-300">•</span>
+          <span id="prop-date" class="text-xs text-slate-400">Đăng hôm nay</span>
+        </div>
+        <h1 id="prop-title" class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Đang tải tiêu đề bất động sản...</h1>
+        <div class="flex items-center gap-2 text-sm text-slate-600 mt-2">
+          <i class="fa-solid fa-location-dot text-rose-500"></i>
+          <span id="prop-address">Đang tải địa chỉ...</span>
+        </div>
+      </div>
+
+      <!-- Khung Giá & Thao tác Chia sẻ/Lưu -->
+      <div class="flex flex-row lg:flex-col items-baseline lg:items-end justify-between bg-white lg:bg-transparent p-4 lg:p-0 rounded-2xl border lg:border-0 border-slate-200 shadow-xs lg:shadow-none">
+        <div>
+          <div id="prop-price" class="text-3xl sm:text-4xl font-black text-rose-600 tracking-tight">0 Tỷ</div>
+          <div class="text-xs text-slate-500 font-medium mt-0.5">Đơn giá: <span id="prop-unit-price" class="text-slate-800 font-bold">~ 0 tr/m²</span></div>
+        </div>
+
+        <div class="flex items-center gap-2 mt-3">
+          <button id="btn-save-detail" onclick="toggleSaveCurrent()" class="px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-rose-400 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all shadow-xs">
+            <i class="fa-regular fa-heart text-rose-500 text-sm"></i>
+            <span>Lưu tin</span>
+          </button>
+          <button onclick="shareLink()" class="px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-blue-400 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all shadow-xs">
+            <i class="fa-solid fa-share-nodes text-blue-500 text-sm"></i>
+            <span>Chia sẻ</span>
+          </button>
+          <button onclick="window.print()" class="px-3 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-xs font-bold text-slate-700 hidden sm:flex items-center gap-1.5 transition-all shadow-xs">
+            <i class="fa-solid fa-print text-slate-500 text-sm"></i>
+            <span>In tin</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY ẢNH LỚN -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-10">
+      <div class="md:col-span-3 h-80 sm:h-[460px] rounded-3xl overflow-hidden bg-slate-100 shadow-md relative group">
+        <img id="main-gallery-img" src="" alt="Ảnh BĐS" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" />
+        <span class="absolute bottom-4 left-4 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md text-white text-xs font-semibold flex items-center gap-1.5">
+          <i class="fa-solid fa-camera"></i>
+          <span id="photo-count-badge">4 hình ảnh thực tế</span>
+        </span>
+      </div>
+      
+      <!-- Cột ảnh nhỏ thumbnail -->
+      <div id="thumb-gallery-container" class="grid grid-cols-3 md:grid-cols-1 gap-3 h-auto md:h-[460px]">
+        <!-- Render tự động bởi JS -->
+      </div>
+    </div>
+
+    <!-- NỘI DUNG 2 CỘT CHÍNH -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      
+      <!-- CỘT TRÁI: THÔNG TIN CHI TIẾT (2 Cột rộng) -->
+      <div class="lg:col-span-2 space-y-10">
+
+        <!-- HỘP THÔNG SỐ VÀNG (KEY SPECS) -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm">
+          <h2 class="text-base font-extrabold text-slate-900 mb-5 flex items-center gap-2">
+            <i class="fa-solid fa-chart-simple text-blue-600"></i>
+            <span>Thông số tổng quan bất động sản</span>
+          </h2>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Diện tích</span>
+              <div id="spec-area" class="text-lg font-black text-slate-900 mt-0.5">0 m²</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Phòng ngủ</span>
+              <div id="spec-beds" class="text-lg font-black text-slate-900 mt-0.5">0 PN</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Phòng tắm / WC</span>
+              <div id="spec-baths" class="text-lg font-black text-slate-900 mt-0.5">0 WC</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Hướng nhà</span>
+              <div id="spec-direction" class="text-lg font-black text-slate-900 mt-0.5">Đông Nam</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Tình trạng pháp lý</span>
+              <div id="spec-legal" class="text-sm font-bold text-slate-900 mt-1">Sổ hồng riêng</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Tầng / Tòa</span>
+              <div id="spec-floor" class="text-sm font-bold text-slate-900 mt-1">Tầng 18</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Nội thất</span>
+              <div id="spec-furniture" class="text-sm font-bold text-slate-900 mt-1">Cơ bản cao cấp</div>
+            </div>
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+              <span class="text-xs text-slate-400 font-medium">Chủ đầu tư</span>
+              <div id="spec-investor" class="text-sm font-bold text-slate-900 mt-1">Vingroup</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÔ TẢ CHI TIẾT -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm">
+          <h2 class="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-align-left text-blue-600"></i>
+            <span>Mô tả chi tiết từ chính chủ / môi giới</span>
+          </h2>
+          <div id="prop-description" class="text-sm text-slate-700 leading-relaxed whitespace-pre-line space-y-2">
+            <!-- Render bởi JS -->
+          </div>
+        </div>
+
+        <!-- TIỆN ÍCH XUNG QUANH (AMENITIES WITH DISTANCE) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm">
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-location-crosshairs text-blue-600"></i>
+            <span>Tiện ích xung quanh & Bán kính kết nối</span>
+          </h2>
+          <p class="text-xs text-slate-500 mb-6">Khoảng cách ước tính di chuyển bằng phương tiện cá nhân</p>
+
+          <div id="amenities-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <!-- Render tự động bởi JS -->
+          </div>
+        </div>
+
+        <!-- BẢN ĐỒ VỊ TRÍ LEAFLET CHI TIẾT -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-map text-blue-600"></i>
+                <span>Vị trí trên bản đồ vệ tinh & giao thông</span>
+              </h2>
+              <p class="text-xs text-slate-500 mt-0.5" id="map-address-hint">Phường Long Thạnh Mỹ, TP. Thủ Đức</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <a id="btn-open-google-maps" href="https://www.google.com/maps/place/10%C2%B002'02.8%22N+105%C2%B047'15.0%22E/@10.0341,105.7875,15z" target="_blank" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-colors">
+                <i class="fa-solid fa-arrow-up-right-from-square text-rose-500 text-[10px]"></i>
+                <span>Google Maps</span>
+              </a>
+              <a href="map-search.html" class="px-3.5 py-1.5 rounded-xl bg-blue-50 text-blue-700 font-bold text-xs hover:bg-blue-100 flex items-center gap-1.5">
+                <span>Mở bản đồ lớn</span>
+                <i class="fa-solid fa-expand text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <div id="detail-mini-map" class="h-80 w-full rounded-2xl overflow-hidden border border-slate-200 z-10"></div>
+        </div>
+
+        <!-- CÔNG CỤ TÍNH LÃI VAY TRỰC TIẾP CHO BĐS NÀY -->
+        <div class="bg-gradient-to-br from-blue-900 to-indigo-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl">
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+            <div>
+              <span class="px-2.5 py-1 rounded bg-blue-600/50 text-blue-200 text-[10px] font-bold uppercase">Công cụ tài chính</span>
+              <h3 class="text-xl font-extrabold mt-1">Dự toán khoản vay mua căn nhà này</h3>
+            </div>
+            <i class="fa-solid fa-hand-holding-dollar text-3xl text-blue-300"></i>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- Thanh kéo thông số -->
+            <div class="space-y-5">
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-2">
+                  <span class="text-blue-200">Tỷ lệ vay ngân hàng:</span>
+                  <span id="calc-loan-percent-text" class="text-white font-bold">70% (2.24 Tỷ)</span>
+                </div>
+                <input type="range" id="calc-loan-percent" min="10" max="85" value="70" step="5" class="w-full" oninput="updateMortgageCalc()" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-2">
+                  <span class="text-blue-200">Thời hạn vay:</span>
+                  <span id="calc-loan-years-text" class="text-white font-bold">20 Năm (240 tháng)</span>
+                </div>
+                <input type="range" id="calc-loan-years" min="5" max="30" value="20" step="1" class="w-full" oninput="updateMortgageCalc()" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-2">
+                  <span class="text-blue-200">Lãi suất ưu đãi hàng năm:</span>
+                  <span id="calc-loan-rate-text" class="text-emerald-400 font-bold">6.5% / năm</span>
+                </div>
+                <input type="range" id="calc-loan-rate" min="4.5" max="12.0" value="6.5" step="0.1" class="w-full" oninput="updateMortgageCalc()" />
+              </div>
+            </div>
+
+            <!-- Kết quả tính toán -->
+            <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 space-y-3 text-xs">
+              <div class="flex justify-between py-1 border-b border-white/10">
+                <span class="text-blue-200">Vốn tự có cần có:</span>
+                <span id="calc-down-payment" class="font-bold text-white">960 Triệu VNĐ</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-white/10">
+                <span class="text-blue-200">Gốc trả hàng tháng:</span>
+                <span id="calc-monthly-principal" class="font-bold text-white">9.3 Triệu VNĐ</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-white/10">
+                <span class="text-blue-200">Lãi tháng đầu tiên:</span>
+                <span id="calc-monthly-interest" class="font-bold text-emerald-300">12.1 Triệu VNĐ</span>
+              </div>
+              <div class="pt-2">
+                <span class="text-xs text-blue-200">Tổng chi trả tháng đầu (Gốc + Lãi):</span>
+                <div id="calc-total-monthly" class="text-2xl font-black text-yellow-300 mt-0.5">~ 21.4 Triệu / tháng</div>
+              </div>
+              <a href="loan-calculator.html" class="mt-3 block text-center py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs transition-colors">
+                Xem lịch trả nợ chi tiết &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CỘT PHẢI: MÔI GIỚI PHỤ TRÁCH & FORM ĐĂNG KÝ XEM NHÀ (Sticky 1 Cột) -->
+      <div class="space-y-6">
+        <div class="sticky top-24 bg-white p-6 rounded-3xl border border-slate-200 shadow-lg space-y-6">
+          
+          <!-- Thông tin chuyên viên tư vấn -->
+          <div>
+            <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider block mb-3">Chuyên viên phụ trách tin này</span>
+            <div class="flex items-center gap-3.5">
+              <img id="agent-avatar" src="" alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-blue-500 shadow-sm" />
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 id="agent-name" class="font-extrabold text-slate-900 text-base">Đang tải...</h3>
+                  <i class="fa-solid fa-circle-check text-blue-500 text-xs" title="Môi giới đã xác thực"></i>
+                </div>
+                <div id="agent-role" class="text-xs text-slate-500 mt-0.5">Chuyên viên BĐS</div>
+                <div class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Đang sẵn sàng tư vấn</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Các nút liên hệ nhanh -->
+          <div class="space-y-2.5">
+            <a id="btn-call-agent" href="tel:" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all text-sm">
+              <i class="fa-solid fa-phone text-base"></i>
+              <span id="agent-phone-display">Gọi ngay</span>
+            </a>
+            <a id="btn-zalo-agent" href="#" target="_blank" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 transition-all text-sm">
+              <i class="fa-solid fa-comment-dots text-base"></i>
+              <span>Nhắn tin qua Zalo</span>
+            </a>
+          </div>
+
+          <!-- Form đăng ký xem nhà -->
+          <div class="pt-5 border-t border-slate-100">
+            <h4 class="font-extrabold text-slate-900 text-sm mb-1">Đặt lịch đi xem nhà trực tiếp</h4>
+            <p class="text-xs text-slate-400 mb-4">Xe đưa đón xem dự án hoàn toàn miễn phí</p>
+
+            <form onsubmit="handleAppointmentSubmit(event)" class="space-y-3">
+              <div>
+                <input type="text" id="cust-name" required placeholder="Họ và tên của bạn" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+              </div>
+              <div>
+                <input type="tel" id="cust-phone" required placeholder="Số điện thoại Zalo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+              </div>
+              <div>
+                <select id="cust-time" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                  <option value="today">Xem trong hôm nay</option>
+                  <option value="tomorrow">Xem vào ngày mai</option>
+                  <option value="weekend">Xem vào cuối tuần này</option>
+                </select>
+              </div>
+              <div>
+                <textarea id="cust-note" rows="2" placeholder="Ghi chú thêm (khung giờ thuận tiện...)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+              </div>
+              <button type="submit" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition-colors">
+                Xác nhận đặt lịch xem
+              </button>
+            </form>
+          </div>
+
+          <!-- Cam kết an toàn -->
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] text-slate-500 space-y-1">
+            <div class="flex items-center gap-1.5 text-emerald-600 font-bold">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Cam kết bảo mật & An toàn</span>
+            </div>
+            <p>Thông tin của bạn chỉ được chuyển tới chuyên viên tư vấn độc quyền của tin này.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BẤT ĐỘNG SẢN TƯƠNG TỰ CÙNG KHU VỰC -->
+    <div class="mt-16 pt-12 border-t border-slate-200">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Đề xuất phù hợp</span>
+          <h2 class="text-2xl font-black text-slate-900 mt-1">Bất động sản tương tự cùng khu vực</h2>
+        </div>
+        <a href="index.html" class="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1">
+          <span>Xem tất cả</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div id="similar-properties-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Render tự động bởi JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-slate-400 text-sm mt-auto pt-14 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Cột 1: Thông tin công ty -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2.5 text-white font-black text-lg">
+            <img src="images/logo.jpg" alt="Minh Vương Home Luxury" class="w-9 h-9 rounded-xl object-cover border border-amber-400/40 shadow-sm" />
+            <span>MINH VƯƠNG <span class="text-amber-400">HOME LUXURY</span></span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Hệ sinh thái công nghệ bất động sản cao cấp Minh Vương Home Luxury. Cung cấp giải pháp tìm kiếm bất động sản thông minh với bản đồ số và thẩm định giá.
+          </p>
+          <div class="flex items-center gap-3 text-slate-300">
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-rose-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-xs"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-blue-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-xs"></i></a>
+          </div>
+        </div>
+
+        <!-- Cột 2: Danh mục chính -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Các trang chức năng</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-white transition-colors">Trang chủ sàn giao dịch</a></li>
+            <li><a href="map-search.html" class="hover:text-white transition-colors">Bản đồ tìm kiếm toàn màn hình</a></li>
+            <li><a href="projects.html" class="hover:text-white transition-colors">Dự án bất động sản đô thị</a></li>
+            <li><a href="services.html" class="hover:text-white transition-colors">Dịch vụ BĐS trọn gói</a></li>
+            <li><a href="loan-calculator.html" class="hover:text-white transition-colors">Công cụ tính lãi vay mua nhà</a></li>
+            <li><a href="reviews.html" class="hover:text-white transition-colors">Đánh giá từ khách hàng</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Liên hệ & Hỗ trợ khách hàng</a></li>
+            <li><a href="post-property.html" class="hover:text-white transition-colors">Đăng tin ký gửi nhà đất</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 3: Hỗ trợ khách hàng -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Hỗ trợ & Pháp lý</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">Quy trình đăng kiểm chứng chỉ môi giới</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Cẩm nang kiểm tra sổ đỏ/sổ hồng thật giả</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Bảng giá gói tin VIP & Quảng cáo</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin khách hàng</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Điều khoản thỏa thuận dịch vụ</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 4: Tổng đài liên hệ -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm mb-4">Liên hệ chăm sóc</h4>
+          <div class="text-xs">
+            <div class="text-slate-400">Hotline tư vấn 24/7:</div>
+            <div class="text-white font-extrabold text-base text-rose-500">1900 6868</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Email hợp tác:</div>
+            <div class="text-slate-200">contact@bdsviet-hub.vn</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Trụ sở chính:</div>
+            <div class="text-slate-300">Tầng 25, Landmark 81, Vinhomes Central Park, TP. Hồ Chí Minh</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Chi nhánh Cần Thơ & Miền Tây:</div>
+            <div class="text-slate-300">Ninh Kiều, TP. Cần Thơ (10°02'02.8"N 105°47'15.0"E)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>&copy; 2026 Minh Vương Home Luxury. Thiết kế giao diện hiện đại với Leaflet & Tailwind CSS.</div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Bảo mật SSL 256-bit</span>
+          <span>Phiên bản 2.5 Web Portal</span>
+          <span class="hidden sm:inline-block">Đã chứng nhận Bộ Công Thương</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Container hiển thị thông báo Toast -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Leaflet JS CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Data Script -->
+  <script src="js/data.js"></script>
+  <!-- Navbar Script -->
+  <script src="js/navbar.js"></script>
+
+  <!-- Script điều khiển riêng của Trang Chi tiết -->
+  <script>
+    let currentProp = null;
+    let detailMap = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Lấy ID từ URL (vd: property-detail.html?id=2)
+      const urlParams = new URLSearchParams(window.location.search);
+      const propId = urlParams.get('id') || 10;
+      currentProp = getPropertyById(propId);
+
+      renderPropertyDetailPage(currentProp);
+      initDetailMap(currentProp);
+      updateMortgageCalc();
+      renderSimilarProperties(currentProp);
+    });
+
+    function renderPropertyDetailPage(prop) {
+      document.title = `${prop.title} | Minh Vương Home Luxury`;
+      document.getElementById("breadcrumb-category").textContent = prop.category === 'sale' ? 'Nhà đất bán' : 'Nhà đất cho thuê';
+      document.getElementById("breadcrumb-title").textContent = prop.title;
+
+      document.getElementById("prop-badge").textContent = prop.badge;
+      document.getElementById("prop-type-name").textContent = prop.typeName;
+      document.getElementById("prop-code").textContent = `Mã tin: BDS-${prop.id.toString().slice(-5).padStart(5, '0')}`;
+      document.getElementById("prop-date").textContent = `Đăng ${prop.postedAt || 'Hôm nay'}`;
+      document.getElementById("prop-title").textContent = prop.title;
+      document.getElementById("prop-address").textContent = prop.address;
+      document.getElementById("prop-price").textContent = prop.price;
+      document.getElementById("prop-unit-price").textContent = prop.unitPrice;
+
+      // Gallery ảnh
+      const mainImg = document.getElementById("main-gallery-img");
+      mainImg.src = prop.images[0];
+      document.getElementById("photo-count-badge").textContent = `${prop.images.length} hình ảnh thực tế`;
+
+      const thumbContainer = document.getElementById("thumb-gallery-container");
+      thumbContainer.innerHTML = prop.images.map((img, i) => `
+        <div class="rounded-2xl overflow-hidden cursor-pointer h-24 md:h-[105px] border-2 ${i === 0 ? 'border-blue-600' : 'border-transparent'} hover:opacity-85 transition-all" onclick="changeMainImage('${img}', this)">
+          <img src="${img}" alt="Thumbnail ${i + 1}" class="w-full h-full object-cover" />
+        </div>
+      `).join("");
+
+      // Thông số kỹ thuật
+      document.getElementById("spec-area").textContent = `${prop.area} m²`;
+      document.getElementById("spec-beds").textContent = prop.bedrooms > 0 ? `${prop.bedrooms} PN` : 'Mặt bằng';
+      document.getElementById("spec-baths").textContent = `${prop.bathrooms} WC`;
+      document.getElementById("spec-direction").textContent = prop.direction;
+      document.getElementById("spec-legal").textContent = prop.legal;
+      document.getElementById("spec-floor").textContent = prop.floor;
+      document.getElementById("spec-furniture").textContent = prop.furniture;
+      document.getElementById("spec-investor").textContent = prop.investor || "Chính chủ";
+
+      // Mô tả
+      document.getElementById("prop-description").textContent = prop.description;
+
+      // Tiện ích xung quanh
+      const amenContainer = document.getElementById("amenities-grid");
+      if (prop.amenities && prop.amenities.length > 0) {
+        amenContainer.innerHTML = prop.amenities.map(a => `
+          <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+                <i class="fa-solid ${a.icon || 'fa-location-dot'}"></i>
+              </div>
+              <span class="font-bold text-slate-800 text-xs sm:text-sm">${a.name}</span>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-extrabold text-blue-600">
+              ${a.dist}
+            </span>
+          </div>
+        `).join("");
+      }
+
+      // Thông tin Môi giới
+      document.getElementById("agent-avatar").src = prop.agent.avatar;
+      document.getElementById("agent-name").textContent = prop.agent.name;
+      document.getElementById("agent-role").textContent = prop.agent.role || prop.agent.title || "Chuyên viên tư vấn BĐS";
+      document.getElementById("agent-phone-display").textContent = `Gọi ngay: ${prop.agent.phone}`;
+      document.getElementById("btn-call-agent").href = `tel:${prop.agent.phone.replace(/\s+/g, '')}`;
+      document.getElementById("btn-zalo-agent").href = prop.agent.zalo || `https://zalo.me/${prop.agent.phone.replace(/\s+/g, '')}`;
+      document.getElementById("map-address-hint").textContent = prop.address;
+    }
+
+    function changeMainImage(url, el) {
+      document.getElementById("main-gallery-img").src = url;
+      document.querySelectorAll("#thumb-gallery-container > div").forEach(d => {
+        d.classList.remove("border-blue-600");
+        d.classList.add("border-transparent");
+      });
+      el.classList.remove("border-transparent");
+      el.classList.add("border-blue-600");
+    }
+
+    function initDetailMap(prop) {
+      if (!prop.lat || !prop.lng) return;
+      detailMap = L.map("detail-mini-map", {
+        zoomControl: true,
+        scrollWheelZoom: false,
+        attributionControl: false
+      }).setView([prop.lat, prop.lng], 15);
+
+      L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      }).addTo(detailMap);
+
+      // Thêm Marker bán kính
+      L.circle([prop.lat, prop.lng], {
+        color: '#2563eb',
+        fillColor: '#3b82f6',
+        fillOpacity: 0.15,
+        radius: 350
+      }).addTo(detailMap);
+
+      // Marker chính
+      const markerHtml = `
+        <div class="custom-price-marker">
+          <div class="price-pill bg-rose-600 text-white">${prop.price}</div>
+          <div class="price-pill-tail" style="border-top-color: #e11d48"></div>
+        </div>
+      `;
+      L.marker([prop.lat, prop.lng], {
+        icon: L.divIcon({ html: markerHtml, iconSize: [80, 36], iconAnchor: [40, 36] })
+      }).addTo(detailMap);
+
+      const btnGmap = document.getElementById("btn-open-google-maps");
+      if (btnGmap) {
+        btnGmap.href = `https://www.google.com/maps/place/${prop.lat},${prop.lng}/@${prop.lat},${prop.lng},15z`;
+      }
+    }
+
+    // Tính toán lãi suất vay mua nhà
+    function updateMortgageCalc() {
+      if (!currentProp) return;
+      const priceVal = currentProp.priceValue; // đơn vị triệu đồng (vd: 3200)
+      const percent = parseInt(document.getElementById("calc-loan-percent").value, 10);
+      const years = parseInt(document.getElementById("calc-loan-years").value, 10);
+      const annualRate = parseFloat(document.getElementById("calc-loan-rate").value);
+
+      const loanAmount = (priceVal * percent) / 100; // triệu
+      const downPayment = priceVal - loanAmount;     // triệu
+      const totalMonths = years * 12;
+
+      // Tính gốc hàng tháng
+      const monthlyPrincipal = loanAmount / totalMonths;
+
+      // Tính lãi tháng đầu tiên: Dư nợ * (lãi suất / 12)
+      const monthlyInterest = loanAmount * (annualRate / 100 / 12);
+      const totalFirstMonth = monthlyPrincipal + monthlyInterest;
+
+      // Cập nhật text UI
+      document.getElementById("calc-loan-percent-text").textContent = `${percent}% (~ ${(loanAmount / 1000).toFixed(2)} Tỷ)`;
+      document.getElementById("calc-loan-years-text").textContent = `${years} Năm (${totalMonths} tháng)`;
+      document.getElementById("calc-loan-rate-text").textContent = `${annualRate.toFixed(1)}% / năm`;
+
+      document.getElementById("calc-down-payment").textContent = `${downPayment.toFixed(0)} Triệu VNĐ (${(downPayment/1000).toFixed(2)} Tỷ)`;
+      document.getElementById("calc-monthly-principal").textContent = `${monthlyPrincipal.toFixed(1)} Triệu / tháng`;
+      document.getElementById("calc-monthly-interest").textContent = `${monthlyInterest.toFixed(1)} Triệu`;
+      document.getElementById("calc-total-monthly").textContent = `~ ${totalFirstMonth.toFixed(1)} Triệu / tháng`;
+    }
+
+    function renderSimilarProperties(prop) {
+      const container = document.getElementById("similar-properties-grid");
+      const similars = REAL_ESTATE_DATA.filter(p => p.id !== prop.id).slice(0, 3);
+
+      container.innerHTML = similars.map(item => `
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-48 relative overflow-hidden">
+            <img src="${item.images[0]}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold text-white ${item.badgeColor || 'bg-blue-600'}">
+              ${item.badge}
+            </span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-rose-600 font-extrabold text-lg mb-1">${item.price} <span class="text-xs text-slate-400 font-normal">(${item.unitPrice})</span></div>
+              <h4 class="font-bold text-slate-900 text-sm line-clamp-2 mb-3 group-hover:text-blue-600 transition-colors">${item.title}</h4>
+              <div class="flex items-center gap-3 text-xs text-slate-500 mb-3 pb-3 border-b border-slate-100">
+                <span><i class="fa-solid fa-ruler-combined text-blue-500 mr-1"></i>${item.area} m²</span>
+                <span><i class="fa-solid fa-bed text-blue-500 mr-1"></i>${item.bedrooms} PN</span>
+                <span><i class="fa-solid fa-compass text-blue-500 mr-1"></i>${item.direction}</span>
+              </div>
+            </div>
+            <a href="property-detail.html?id=${item.id}" class="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white rounded-xl text-xs font-bold text-center transition-colors">
+              Xem chi tiết
+            </a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function handleAppointmentSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("cust-name").value;
+      showToast(`Đã nhận đăng ký xem nhà của anh/chị ${name}. Chuyên viên sẽ gọi xác nhận trong 5 phút!`, "success");
+      e.target.reset();
+    }
+
+    function toggleSaveCurrent() {
+      const favorites = JSON.parse(localStorage.getItem("bds_favorites") || "[]");
+      const idx = favorites.indexOf(currentProp.id);
+      if (idx > -1) {
+        favorites.splice(idx, 1);
+        showToast("Đã xóa bất động sản khỏi danh sách lưu", "info");
+      } else {
+        favorites.push(currentProp.id);
+        showToast("Đã lưu bất động sản thành công!", "success");
+      }
+      localStorage.setItem("bds_favorites", JSON.stringify(favorites));
+      if (typeof window.updateNavbarSavedBadge === "function") {
+        window.updateNavbarSavedBadge();
+      }
+    }
+
+    function shareLink() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href);
+        showToast("Đã sao chép liên kết bất động sản vào clipboard!", "success");
+      } else {
+        showToast("Liên kết: " + window.location.href, "info");
+      }
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = `p-4 rounded-xl shadow-xl flex items-center gap-3 transition-all duration-300 text-sm font-semibold text-white ${
+        type === "success" ? "bg-emerald-600" : "bg-blue-600"
+      }`;
+      toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+    }
+  </script>
+</body>
+</html>

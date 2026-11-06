@@ -1,0 +1,249 @@
+@model Nhom15_BatDongSan.Models.Property
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- Breadcrumb & Header Actions -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <nav class="flex items-center gap-2 text-xs text-slate-500">
+            <a asp-controller="Home" asp-action="Index" class="hover:text-blue-600">Trang chủ</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a asp-controller="Property" asp-action="Index" class="hover:text-blue-600">@Model.CategoryName</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span class="text-slate-800 font-bold truncate max-w-xs">@Model.Title</span>
+        </nav>
+
+        <div class="flex items-center gap-2">
+            <a asp-controller="Admin" asp-action="ManageImages" asp-route-propertyId="@Model.Id" class="px-3.5 py-2 rounded-xl bg-purple-50 text-purple-700 text-xs font-bold hover:bg-purple-100 transition-colors flex items-center gap-1.5 border border-purple-200">
+                <i class="fa-solid fa-images"></i>
+                <span>Quản lý ảnh (Bài TH 11)</span>
+            </a>
+            <a asp-controller="Contact" asp-action="Index" asp-route-propertyId="@Model.Id" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/20">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Đặt lịch xem nhà</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Title & Address Header -->
+    <div class="space-y-2">
+        <div class="flex flex-wrap items-center gap-2">
+            @if (!string.IsNullOrEmpty(Model.Badge))
+            {
+                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase text-white @Model.BadgeColor">
+                    @Model.Badge
+                </span>
+            }
+            <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-700">@Model.CategoryName</span>
+            <span class="text-xs text-slate-400">Đăng ngày: @Model.PostedTime</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug">@Model.Title</h1>
+        <p class="text-xs sm:text-sm text-slate-600 flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-rose-500"></i>
+            <span>@Model.Address</span>
+        </p>
+    </div>
+
+    <!-- ================= BÀI THỰC HÀNH 11: GALLERY ẢNH SẢN PHẨM ================= -->
+    <div class="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <h2 class="text-sm font-extrabold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-images text-blue-600"></i>
+                <span>Bộ Sưu Tập Hình Ảnh Sản Phẩm (Bài Thực Hành 11)</span>
+            </h2>
+            <span class="text-xs text-slate-400">Tổng cộng @Model.Images.Count hình ảnh</span>
+        </div>
+
+        <!-- Main Display Photo -->
+        <div class="relative h-[320px] sm:h-[480px] rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
+            <img id="main-product-image" src="@(Model.Images.FirstOrDefault() ?? "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80")" alt="@Model.Title" class="w-full h-full object-cover transition-all duration-300" />
+            <div class="absolute bottom-4 left-4 px-4 py-2 rounded-xl bg-slate-900/80 backdrop-blur-md text-white text-base font-extrabold shadow-lg">
+                @Model.PriceDisplay <span class="text-xs font-normal text-slate-300">(@Model.UnitPrice)</span>
+            </div>
+        </div>
+
+        <!-- Thumbnails Strip -->
+        <div class="flex items-center gap-3 overflow-x-auto pb-2" id="thumbnail-strip">
+            @for (int i = 0; i < Model.Images.Count; i++)
+            {
+                var img = Model.Images[i];
+                <button type="button" onclick="changeMainImage('@img', this)" class="thumbnail-btn w-24 h-16 rounded-xl overflow-hidden flex-shrink-0 border-2 @(i == 0 ? "border-blue-600 scale-105" : "border-transparent opacity-70") hover:opacity-100 transition-all">
+                    <img src="@img" class="w-full h-full object-cover" />
+                </button>
+            }
+        </div>
+    </div>
+
+    <!-- Main Grid: Info + Sidebar Form -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left: Specifications, Features, Map -->
+        <div class="lg:col-span-2 space-y-8">
+            
+            <!-- Quick Specs Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                    <i class="fa-solid fa-vector-square text-blue-600 text-lg mb-1"></i>
+                    <div class="text-[10px] text-slate-400 font-bold uppercase">Diện tích</div>
+                    <div class="text-sm font-extrabold text-slate-900">@Model.AreaSqm m²</div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                    <i class="fa-solid fa-bed text-blue-600 text-lg mb-1"></i>
+                    <div class="text-[10px] text-slate-400 font-bold uppercase">Phòng ngủ</div>
+                    <div class="text-sm font-extrabold text-slate-900">@Model.Bedrooms PN</div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                    <i class="fa-solid fa-bath text-blue-600 text-lg mb-1"></i>
+                    <div class="text-[10px] text-slate-400 font-bold uppercase">Vệ sinh</div>
+                    <div class="text-sm font-extrabold text-slate-900">@Model.Bathrooms WC</div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                    <i class="fa-solid fa-compass text-blue-600 text-lg mb-1"></i>
+                    <div class="text-[10px] text-slate-400 font-bold uppercase">Hướng nhà</div>
+                    <div class="text-sm font-extrabold text-slate-900">@Model.Direction</div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-base font-extrabold text-slate-900">Mô Tả Chi Tiết</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line">@Model.Description</p>
+            </div>
+
+            <!-- Features -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-base font-extrabold text-slate-900">Đặc Điểm Nổi Bật</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    @foreach (var feat in Model.Features)
+                    {
+                        <div class="flex items-center gap-2 text-xs text-slate-700">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>@feat</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Nearby Amenities -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-base font-extrabold text-slate-900">Tiện Ích Xung Quanh</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    @foreach (var amen in Model.Amenities)
+                    {
+                        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center gap-2.5">
+                            <i class="fa-solid @amen.Icon text-blue-600"></i>
+                            <div>
+                                <div class="text-xs font-bold text-slate-800">@amen.Name</div>
+                                <div class="text-[10px] text-slate-400">@amen.Distance</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Interactive Map -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-map-location-dot text-rose-500"></i>
+                    <span>Vị Trí Bản Đồ Leaflet (GPS: @Model.Latitude, @Model.Longitude)</span>
+                </h3>
+                <div id="detail-map" class="w-full h-72 rounded-2xl overflow-hidden border border-slate-200"></div>
+            </div>
+
+        </div>
+
+        <!-- Right: Agent Card + Contact Form (Bài TH 12) -->
+        <div class="space-y-6">
+            
+            <!-- Agent Card -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm text-center space-y-4">
+                <img src="@Model.Agent.Avatar" class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-blue-50 shadow-md" />
+                <div>
+                    <h4 class="text-base font-black text-slate-900">@Model.Agent.Name</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">@Model.Agent.Title</p>
+                </div>
+                <div class="pt-2 flex flex-col gap-2">
+                    <a href="tel:@Model.Agent.Phone" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Gọi: @Model.Agent.Phone</span>
+                    </a>
+                    <a href="https://zalo.me" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comment-dots text-blue-600"></i>
+                        <span>Chat qua Zalo</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ================= BÀI THỰC HÀNH 12: FORM GỬI LIÊN HỆ ================= -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                <div class="pb-2 border-b border-slate-100">
+                    <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-blue-600"></i>
+                        <span>Gửi Yêu Cầu Tư Vấn (Bài TH 12)</span>
+                    </h3>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Để lại thông tin, chuyên viên sẽ gọi lại sau 15 phút</p>
+                </div>
+
+                <form method="post" asp-controller="Contact" asp-action="Index" class="space-y-3">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PropertyId" value="@Model.Id" />
+                    <input type="hidden" name="Branch" value="@Model.CityCode" />
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Họ và tên *</label>
+                        <input type="text" name="FullName" required placeholder="Ví dụ: Nguyễn Văn An" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại *</label>
+                        <input type="tel" name="Phone" required placeholder="09xx xxx xxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Lời nhắn</label>
+                        <textarea name="Message" rows="3" placeholder="Tôi muốn đặt lịch xem nhà vào thứ 7 này..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition-all shadow-md shadow-blue-600/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Gửi Liên Hệ Ngay</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        function changeMainImage(src, btn) {
+            document.getElementById('main-product-image').src = src;
+            document.querySelectorAll('.thumbnail-btn').forEach(b => {
+                b.classList.remove('border-blue-600', 'scale-105');
+                b.classList.add('border-transparent', 'opacity-70');
+            });
+            btn.classList.add('border-blue-600', 'scale-105');
+            btn.classList.remove('border-transparent', 'opacity-70');
+        }
+
+        // Mini Leaflet Map initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            var lat = @Model.Latitude;
+            var lng = @Model.Longitude;
+            var map = L.map('detail-map').setView([lat, lng], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup('<b>@Html.Raw(Model.Title)</b><br>@Html.Raw(Model.PriceDisplay)')
+                .openPopup();
+        });
+    </script>
+}

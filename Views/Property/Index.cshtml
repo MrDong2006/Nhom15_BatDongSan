@@ -1,0 +1,46 @@
+@model List<Nhom15_BatDongSan.Models.Property>
+@{
+    ViewData["Title"] = "Danh Mục Bất Động Sản";
+    var categories = ViewBag.Categories as List<Nhom15_BatDongSan.Models.Category> ?? new();
+}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900">Danh Mục Nhà Đất Toàn Quốc</h1>
+            <p class="text-xs text-slate-500 mt-1">Tìm thấy @Model.Count sản phẩm bất động sản</p>
+        </div>
+        <a asp-controller="Property" asp-action="MapSearch" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Bản đồ số Leaflet</span>
+        </a>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach (var item in Model)
+        {
+            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+                <div class="relative h-52 overflow-hidden bg-slate-900">
+                    <img src="@(item.Images.FirstOrDefault() ?? "")" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <span class="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-slate-900/80 backdrop-blur-md text-white text-xs font-extrabold">
+                        @item.PriceDisplay
+                    </span>
+                </div>
+                <div class="p-5 space-y-3">
+                    <div class="text-[10px] font-bold text-blue-600 uppercase">@item.CategoryName</div>
+                    <h3 class="text-sm font-bold text-slate-900 line-clamp-2">
+                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="hover:text-blue-600">@item.Title</a>
+                    </h3>
+                    <div class="text-xs text-slate-500 truncate"><i class="fa-solid fa-location-dot mr-1 text-rose-500"></i>@item.Address</div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-700">@item.AreaSqm m² | @item.Bedrooms PN</span>
+                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="px-3 py-1.5 rounded-xl bg-blue-50 text-blue-600 text-xs font-bold hover:bg-blue-600 hover:text-white transition-colors">
+                            Xem ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

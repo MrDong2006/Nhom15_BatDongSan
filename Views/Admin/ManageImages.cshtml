@@ -1,0 +1,92 @@
+@model Nhom15_BatDongSan.Models.Property
+@{
+    ViewData["Title"] = "Quản Lý Ảnh Sản Phẩm - Bài Thực Hành 11";
+}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Header & Breadcrumb -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                <a asp-controller="Admin" asp-action="Index" class="hover:text-blue-600">Quản trị</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span>Bài Thực Hành 11: Quản Lý Ảnh Sản Phẩm</span>
+            </nav>
+            <h1 class="text-2xl font-black text-slate-900">Quản Lý Bộ Sưu Tập Ảnh Sản Phẩm</h1>
+            <p class="text-xs text-slate-500 mt-1">
+                Sản phẩm: <strong class="text-slate-800">#@Model.Id - @Model.Title</strong>
+            </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <a asp-controller="Admin" asp-action="Index" class="px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+            </a>
+            <a asp-controller="Property" asp-action="Details" asp-route-id="@Model.Id" target="_blank" class="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 text-xs font-bold hover:bg-blue-100">
+                <i class="fa-solid fa-eye mr-1"></i> Xem trang chi tiết
+            </a>
+        </div>
+    </div>
+
+    <!-- Add Image Form -->
+    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+        <h2 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-cloud-arrow-up text-blue-600"></i>
+            <span>Thêm Hình Ảnh Mới Vào Sản Phẩm</span>
+        </h2>
+
+        <form method="post" asp-controller="Admin" asp-action="AddImage" class="flex flex-col sm:flex-row gap-3">
+            <input type="hidden" name="propertyId" value="@Model.Id" />
+            
+            <div class="flex-1">
+                <input type="url" name="imageUrl" required placeholder="Dán đường dẫn ảnh (URL hoặc đường dẫn tệp /images/...) " class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            </div>
+
+            <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition-all shadow-md flex items-center justify-center gap-2 flex-shrink-0">
+                <i class="fa-solid fa-plus"></i>
+                <span>Thêm Ảnh</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Images Gallery Grid -->
+    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <h2 class="text-sm font-extrabold text-slate-900">Danh Sách Ảnh Hiện Tại (@Model.Images.Count ảnh)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            @for (int i = 0; i < Model.Images.Count; i++)
+            {
+                var img = Model.Images[i];
+                <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 flex flex-col justify-between group">
+                    <div class="relative h-44 overflow-hidden bg-slate-900">
+                        <img src="@img" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        
+                        @if (i == 0)
+                        {
+                            <span class="absolute top-2 left-2 px-2.5 py-1 rounded-md text-[10px] font-bold bg-rose-600 text-white shadow-sm">
+                                Ảnh Đại Diện
+                            </span>
+                        }
+                    </div>
+
+                    <div class="p-3 bg-white border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Vị trí #@(i + 1)</span>
+
+                        <form method="post" asp-controller="Admin" asp-action="DeleteImage" onsubmit="return confirm('Bạn có chắc chắn muốn xóa ảnh này không?');">
+                            <input type="hidden" name="propertyId" value="@Model.Id" />
+                            <input type="hidden" name="imageUrl" value="@img" />
+                            <button type="submit" class="px-2.5 py-1 rounded-lg text-rose-600 hover:bg-rose-50 font-bold text-xs transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <span>Xóa</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

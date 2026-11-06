@@ -1,0 +1,25 @@
+{
+  "name": "bds-minh-vuong-hub",
+  "version": "2.5.0",
+  "description": "Đồ án môn Phát triển Ứng dụng Web - Hệ thống BĐS Minh Vương Home Luxury (Nhóm 15)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node tests/api.test.js"
+  },
+  "keywords": [
+    "web-development",
+    "bat-dong-san",
+    "leaflet",
+    "express",
+    "sqlite",
+    "nhom-15"
+  ],
+  "author": "Nhóm 15 - Môn Phát triển Ứng dụng Web",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

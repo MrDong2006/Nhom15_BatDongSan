@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đánh Giá & Trải Nghiệm Khách Hàng | Minh Vương Home Luxury</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <!-- ================= TOP NOTIFICATION / TICKER ================= -->
+  <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white text-xs py-2 px-4 shadow-inner">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <span class="bg-amber-500 text-white text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full flex-shrink-0">Khách hàng tin chọn</span>
+        <p class="truncate text-slate-100">
+          Hơn 2,850+ đánh giá 5 sao từ khách hàng giao dịch thành công trên toàn quốc qua Minh Vương Home Luxury
+        </p>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-slate-200 text-xs flex-shrink-0">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-check text-emerald-400"></i> Đánh giá 100% người thật</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone-volume text-amber-300"></i> Hotline: 1900 6868</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIVERSAL NAVIGATION BAR ================= -->
+  <header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group flex-shrink-0">
+          <div class="w-11 h-11 rounded-2xl overflow-hidden border border-amber-200/70 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-all bg-white p-0.5 flex-shrink-0">
+            <img src="images/logo.jpg" alt="Minh Vương Home Luxury" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div>
+            <div class="text-base sm:text-lg font-black tracking-tight text-slate-900 flex items-center gap-1 leading-tight">
+              <span class="bg-gradient-to-r from-amber-600 via-amber-700 to-yellow-600 bg-clip-text text-transparent font-extrabold">MINH VƯƠNG</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-300/70 font-black uppercase ml-0.5">LUXURY</span>
+            </div>
+            <div class="text-[9.5px] text-slate-500 font-bold tracking-wider uppercase mt-0.5">Home Luxury & Bản Đồ Số</div>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-600" id="desktop-nav-links">
+          <a href="index.html" data-nav="index" class="nav-link px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="map-search.html" data-nav="map-search" class="nav-link px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-map-location-dot text-rose-500 text-xs"></i>
+            <span>Bản đồ số</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white animate-pulse">HOT</span>
+          </a>
+          <a href="projects.html" data-nav="projects" class="nav-link px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-building text-xs"></i>
+            <span>Dự án</span>
+          </a>
+          <a href="services.html" data-nav="services" class="nav-link px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-handshake text-blue-500 text-xs"></i>
+            <span>Dịch vụ</span>
+          </a>
+          <a href="reviews.html" data-nav="reviews" class="nav-link px-3 py-2 rounded-xl text-blue-600 font-bold bg-blue-50/80 shadow-xs flex items-center gap-1.5 transition-all">
+            <i class="fa-solid fa-star text-amber-500 text-xs"></i>
+            <span>Đánh giá</span>
+          </a>
+          <a href="contact.html" data-nav="contact" class="nav-link px-3 py-2 rounded-xl text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-headset text-xs"></i>
+            <span>Liên hệ</span>
+          </a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <!-- Hotline -->
+          <a href="tel:19006868" class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl transition-colors">
+            <i class="fa-solid fa-phone-volume text-rose-500"></i>
+            <span>1900 6868</span>
+          </a>
+
+          <!-- Nút Đăng tin (Chuyển trang Wizard) -->
+          <a href="post-property.html" data-nav="post-property" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Đăng tin miễn phí</span>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Mở menu" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors">
+            <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu-dropdown" class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 py-3 space-y-1 shadow-xl">
+      <a href="index.html" data-nav="index" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-house w-5 text-center text-blue-600"></i>
+        <span>Trang chủ</span>
+      </a>
+      <a href="map-search.html" data-nav="map-search" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-map-location-dot w-5 text-center text-rose-500"></i>
+          <span>Bản đồ số quy hoạch</span>
+        </div>
+        <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-rose-500 text-white">HOT</span>
+      </a>
+      <a href="projects.html" data-nav="projects" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-building w-5 text-center text-indigo-600"></i>
+        <span>Dự án đô thị</span>
+      </a>
+      <a href="services.html" data-nav="services" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-handshake w-5 text-center text-blue-600"></i>
+        <span>Dịch vụ BĐS trọn gói</span>
+      </a>
+      <a href="reviews.html" data-nav="reviews" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold bg-blue-50 text-blue-600 font-bold transition-all">
+        <i class="fa-solid fa-star w-5 text-center text-amber-500"></i>
+        <span>Đánh giá từ khách hàng</span>
+      </a>
+      <a href="contact.html" data-nav="contact" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+        <i class="fa-solid fa-headset w-5 text-center text-blue-600"></i>
+        <span>Liên hệ & Hỗ trợ 24/7</span>
+      </a>
+      <div class="pt-3 mt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600 px-3">
+        <span>Hotline hỗ trợ 24/7:</span>
+        <a href="tel:19006868" class="text-rose-600 flex items-center gap-1.5 hover:underline">
+          <i class="fa-solid fa-phone"></i> 1900 6868
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ĐÁNH GIÁ ================= -->
+  <section class="bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 text-white pt-12 pb-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold mb-4 backdrop-blur-md">
+          <i class="fa-solid fa-certificate"></i>
+          <span>TRẢI NGHIỆM THỰC TẾ & XÁC THỰC MINH BẠCH</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+          Khách Hàng Nói Gì Về <span class="bg-gradient-to-r from-blue-400 to-amber-300 bg-clip-text text-transparent">Minh Vương Home Luxury</span>?
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          Mỗi lời nhận xét là động lực để chúng tôi hoàn thiện nền tảng bản đồ số, nâng cao độ chính xác thẩm định giá và mang tới trải nghiệm mua bán nhà đất an tâm nhất cho bạn.
+        </p>
+      </div>
+
+      <!-- CARD TỔNG KẾT ĐIỂM SỐ & CHỈ SỐ UY TÍN -->
+      <div class="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Cột 1: Điểm số trung bình (4 cột) -->
+        <div class="md:col-span-4 text-center md:text-left md:border-r border-white/15 md:pr-6">
+          <div class="flex items-baseline justify-center md:justify-start gap-2">
+            <span class="text-5xl sm:text-6xl font-black text-amber-400">4.9</span>
+            <span class="text-xl text-slate-300 font-bold">/ 5.0</span>
+          </div>
+          <div class="flex items-center justify-center md:justify-start gap-1 text-amber-400 text-base my-2">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <div class="text-xs text-slate-300 font-medium">
+            Dựa trên <strong>2,850+</strong> lượt đánh giá từ khách hàng đã giao dịch thực tế
+          </div>
+          <a href="#form-write-review" class="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold text-xs transition-colors shadow-lg shadow-amber-500/20">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Viết đánh giá của bạn</span>
+          </a>
+        </div>
+
+        <!-- Cột 2: Phân bổ sao (4 cột) -->
+        <div class="md:col-span-4 space-y-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-10 font-bold text-slate-300">5 sao</span>
+            <div class="flex-1 h-2.5 rounded-full bg-white/20 overflow-hidden">
+              <div class="h-full bg-amber-400 rounded-full" style="width: 88%"></div>
+            </div>
+            <span class="w-12 text-right text-slate-300 font-mono">88%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-10 font-bold text-slate-300">4 sao</span>
+            <div class="flex-1 h-2.5 rounded-full bg-white/20 overflow-hidden">
+              <div class="h-full bg-amber-400 rounded-full" style="width: 9%"></div>
+            </div>
+            <span class="w-12 text-right text-slate-300 font-mono">9%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-10 font-bold text-slate-300">3 sao</span>
+            <div class="flex-1 h-2.5 rounded-full bg-white/20 overflow-hidden">
+              <div class="h-full bg-amber-400 rounded-full" style="width: 2%"></div>
+            </div>
+            <span class="w-12 text-right text-slate-300 font-mono">2%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-10 font-bold text-slate-300">2 sao</span>
+            <div class="flex-1 h-2.5 rounded-full bg-white/20 overflow-hidden">
+              <div class="h-full bg-amber-400 rounded-full" style="width: 0.6%"></div>
+            </div>
+            <span class="w-12 text-right text-slate-300 font-mono">0.6%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-10 font-bold text-slate-300">1 sao</span>
+            <div class="flex-1 h-2.5 rounded-full bg-white/20 overflow-hidden">
+              <div class="h-full bg-amber-400 rounded-full" style="width: 0.4%"></div>
+            </div>
+            <span class="w-12 text-right text-slate-300 font-mono">0.4%</span>
+          </div>
+        </div>
+
+        <!-- Cột 3: Cam kết chất lượng (4 cột) -->
+        <div class="md:col-span-4 grid grid-cols-2 gap-3 text-center md:border-l border-white/15 md:pl-6">
+          <div class="bg-white/5 p-3 rounded-2xl border border-white/10">
+            <div class="text-2xl font-black text-emerald-400">99.2%</div>
+            <div class="text-[10px] text-slate-300 font-semibold mt-1">Giao dịch an toàn & minh bạch</div>
+          </div>
+          <div class="bg-white/5 p-3 rounded-2xl border border-white/10">
+            <div class="text-2xl font-black text-blue-400">15 Phút</div>
+            <div class="text-[10px] text-slate-300 font-semibold mt-1">Tốc độ phản hồi trung bình</div>
+          </div>
+          <div class="bg-white/5 p-3 rounded-2xl border border-white/10">
+            <div class="text-2xl font-black text-amber-400">99.8%</div>
+            <div class="text-[10px] text-slate-300 font-semibold mt-1">Độ chính xác quy hoạch bản đồ</div>
+          </div>
+          <div class="bg-white/5 p-3 rounded-2xl border border-white/10">
+            <div class="text-2xl font-black text-rose-400">24/7</div>
+            <div class="text-[10px] text-slate-300 font-semibold mt-1">Tổng đài 1900 6868 phục vụ</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 mb-16 flex-1 space-y-12 relative z-20">
+
+    <!-- WORKSPACE 2 CỘT: FORM GỬI ĐÁNH GIÁ & FEED NHẬN XÉT -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- CỘT 1: FORM GỬI ĐÁNH GIÁ MỚI (5 Cột) -->
+      <div id="form-write-review" class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5 sticky top-24">
+        <div>
+          <span class="px-2.5 py-1 rounded bg-amber-100 text-amber-800 text-[10px] font-bold uppercase">Ý kiến đóng góp</span>
+          <h2 class="text-xl font-black text-slate-900 mt-1">Gửi Đánh Giá Của Bạn</h2>
+          <p class="text-xs text-slate-500 mt-1">
+            Đánh giá của bạn sẽ được hiển thị công khai nhằm hỗ trợ cộng đồng người mua bán BĐS có thêm góc nhìn khách quan.
+          </p>
+        </div>
+
+        <form id="review-submission-form" onsubmit="handleReviewSubmit(event)" class="space-y-4">
+          
+          <!-- Bộ chọn sao tương tác -->
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-center">
+            <label class="block text-xs font-bold text-slate-700 mb-2">Mức độ hài lòng của quý khách *</label>
+            <div class="flex items-center justify-center gap-2 text-2xl text-slate-300 cursor-pointer" id="star-rating-picker">
+              <i class="fa-solid fa-star transition-colors" data-value="1" onclick="setFormRating(1)" onmouseenter="previewFormRating(1)" onmouseleave="resetPreviewRating()"></i>
+              <i class="fa-solid fa-star transition-colors" data-value="2" onclick="setFormRating(2)" onmouseenter="previewFormRating(2)" onmouseleave="resetPreviewRating()"></i>
+              <i class="fa-solid fa-star transition-colors" data-value="3" onclick="setFormRating(3)" onmouseenter="previewFormRating(3)" onmouseleave="resetPreviewRating()"></i>
+              <i class="fa-solid fa-star transition-colors" data-value="4" onclick="setFormRating(4)" onmouseenter="previewFormRating(4)" onmouseleave="resetPreviewRating()"></i>
+              <i class="fa-solid fa-star transition-colors" data-value="5" onclick="setFormRating(5)" onmouseenter="previewFormRating(5)" onmouseleave="resetPreviewRating()"></i>
+            </div>
+            <div id="star-rating-label" class="text-xs font-extrabold text-amber-600 mt-1.5">
+              ⭐⭐⭐⭐⭐ 5 sao - Rất tuyệt vời!
+            </div>
+            <input type="hidden" id="form-rating-value" value="5" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Họ và tên của bạn *</label>
+            <input 
+              type="text" 
+              id="review-name" 
+              required 
+              placeholder="Ví dụ: Hoàng Minh Tuấn" 
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại / Zalo *</label>
+              <input 
+                type="tel" 
+                id="review-phone" 
+                required 
+                placeholder="Để cấp tích xanh xác thực" 
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Khu vực giao dịch *</label>
+              <select id="review-city" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white font-medium">
+                <option value="Cần Thơ">TP. Cần Thơ</option>
+                <option value="TP. Hồ Chí Minh" selected>TP. Hồ Chí Minh</option>
+                <option value="Hà Nội">Thủ Đô Hà Nội</option>
+                <option value="Đà Nẵng">Đà Nẵng</option>
+                <option value="Bình Dương">Bình Dương</option>
+                <option value="Đồng Nai">Đồng Nai</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Dịch vụ đã trải nghiệm *</label>
+            <select id="review-service" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white font-medium">
+              <option value="Mua căn hộ chung cư">Mua căn hộ chung cư / Dự án</option>
+              <option value="Mua nhà phố liền thổ">Mua nhà phố / Nhà riêng</option>
+              <option value="Ký gửi bán nhà đất">Ký gửi bán nhà đất</option>
+              <option value="Thuê căn hộ / Nhà ở">Thuê căn hộ / Thuê nhà</option>
+              <option value="Tra cứu bản đồ quy hoạch">Tra cứu bản đồ số & quy hoạch đất</option>
+              <option value="Tư vấn gói vay mua nhà">Tư vấn gói vay mua nhà ngân hàng</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Tiêu đề đánh giá *</label>
+            <input 
+              type="text" 
+              id="review-title" 
+              required 
+              placeholder="Tóm tắt ngắn (Ví dụ: Môi giới Cần Thơ nhiệt tình, thủ tục rất nhanh)" 
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Nội dung nhận xét chi tiết *</label>
+            <textarea 
+              id="review-content" 
+              required 
+              rows="4" 
+              placeholder="Chia sẻ trải nghiệm cụ thể về tính năng web, tốc độ hỗ trợ, độ chính xác của bản đồ..." 
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            ></textarea>
+          </div>
+
+          <!-- Tùy chọn đính kèm ảnh -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Hình ảnh thực tế (Tùy chọn)</label>
+            <div class="border-2 border-dashed border-slate-200 rounded-2xl p-3 text-center hover:bg-slate-50 transition-colors cursor-pointer" onclick="document.getElementById('review-file-input').click()">
+              <input type="file" id="review-file-input" accept="image/*" class="hidden" onchange="handleImageSelect(event)" />
+              <i class="fa-solid fa-cloud-arrow-up text-blue-500 text-lg mb-1"></i>
+              <div class="text-[11px] font-semibold text-slate-600" id="file-upload-hint">Nhấn để tải lên ảnh thực tế (tối đa 5MB)</div>
+            </div>
+            <div id="image-preview-container" class="mt-2 hidden">
+              <img id="image-preview" src="" alt="Xem trước" class="h-20 w-auto rounded-xl object-cover border border-slate-200" />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 text-[11px] text-slate-500">
+            <input type="checkbox" id="review-verified-badge" checked class="rounded text-blue-600 focus:ring-blue-500" />
+            <label for="review-verified-badge">Hiển thị huy hiệu "Đã xác thực giao dịch qua sàn"</label>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold rounded-2xl text-xs transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-star"></i>
+            <span>Đăng Đánh Giá Ngay</span>
+          </button>
+        </form>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+          <span><i class="fa-solid fa-shield-halved mr-1 text-slate-400"></i>Kiểm duyệt tự động & minh bạch</span>
+          <span>Bảo mật SĐT 100%</span>
+        </div>
+      </div>
+
+      <!-- CỘT 2: DANH SÁCH BỘ LỌC & FEED ĐÁNH GIÁ (7 Cột) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- BỘ LỌC ĐÁNH GIÁ (FILTER TABS) -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-4">
+          
+          <!-- Lọc theo số sao -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            <button onclick="filterByStars('all', this)" class="star-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white transition-all whitespace-nowrap">
+              Tất cả (2,850)
+            </button>
+            <button onclick="filterByStars('5', this)" class="star-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all whitespace-nowrap flex items-center gap-1">
+              <span>5 sao</span>
+              <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
+              <span class="text-slate-400 text-[10px]">(2,520)</span>
+            </button>
+            <button onclick="filterByStars('4', this)" class="star-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all whitespace-nowrap flex items-center gap-1">
+              <span>4 sao</span>
+              <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
+              <span class="text-slate-400 text-[10px]">(260)</span>
+            </button>
+            <button onclick="filterByStars('3', this)" class="star-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all whitespace-nowrap flex items-center gap-1">
+              <span>3 sao trở xuống</span>
+              <span class="text-slate-400 text-[10px]">(70)</span>
+            </button>
+          </div>
+
+          <!-- Lọc theo khu vực & Dịch vụ -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+            <div>
+              <select id="feed-filter-city" onchange="applyFeedFilters()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-semibold cursor-pointer">
+                <option value="all">📍 Toàn quốc (Tất cả khu vực)</option>
+                <option value="Cần Thơ">TP. Cần Thơ & Miền Tây</option>
+                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                <option value="Hà Nội">Thủ Đô Hà Nội</option>
+                <option value="Đà Nẵng">Đà Nẵng</option>
+                <option value="Bình Dương">Bình Dương & Đồng Nai</option>
+              </select>
+            </div>
+            <div>
+              <select id="feed-filter-sort" onchange="applyFeedFilters()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-semibold cursor-pointer">
+                <option value="newest">Đánh giá mới nhất</option>
+                <option value="highest">Điểm cao nhất (5 sao)</option>
+                <option value="helpful">Hữu ích nhiều nhất</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- DANH SÁCH FEED ĐÁNH GIÁ (REVIEWS LIST) -->
+        <div id="reviews-feed-container" class="space-y-4">
+          <!-- Các review được render tự động từ JS bên dưới -->
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-slate-400 text-sm mt-auto pt-14 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Cột 1: Thông tin công ty -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2.5 text-white font-black text-lg">
+            <img src="images/logo.jpg" alt="Minh Vương Home Luxury" class="w-9 h-9 rounded-xl object-cover border border-amber-400/40 shadow-sm" />
+            <span>MINH VƯƠNG <span class="text-amber-400">HOME LUXURY</span></span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Hệ sinh thái công nghệ bất động sản cao cấp Minh Vương Home Luxury. Cung cấp giải pháp tìm kiếm bất động sản thông minh với bản đồ số và thẩm định giá.
+          </p>
+          <div class="flex items-center gap-3 text-slate-300">
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-rose-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-xs"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-blue-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-xs"></i></a>
+          </div>
+        </div>
+
+        <!-- Cột 2: Danh mục chính -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Các trang chức năng</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-white transition-colors">Trang chủ sàn giao dịch</a></li>
+            <li><a href="map-search.html" class="hover:text-white transition-colors">Bản đồ tìm kiếm toàn màn hình</a></li>
+            <li><a href="projects.html" class="hover:text-white transition-colors">Dự án bất động sản đô thị</a></li>
+            <li><a href="services.html" class="hover:text-white transition-colors">Dịch vụ BĐS trọn gói</a></li>
+            <li><a href="loan-calculator.html" class="hover:text-white transition-colors">Công cụ tính lãi vay mua nhà</a></li>
+            <li><a href="reviews.html" class="hover:text-white transition-colors">Đánh giá từ khách hàng</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Liên hệ & Hỗ trợ khách hàng</a></li>
+            <li><a href="post-property.html" class="hover:text-white transition-colors">Đăng tin ký gửi nhà đất</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 3: Hỗ trợ khách hàng -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Hỗ trợ & Pháp lý</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#" class="hover:text-white transition-colors">Quy trình đăng kiểm chứng chỉ môi giới</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Cẩm nang kiểm tra sổ đỏ/sổ hồng thật giả</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Bảng giá gói tin VIP & Quảng cáo</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin khách hàng</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Điều khoản thỏa thuận dịch vụ</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 4: Tổng đài liên hệ -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm mb-4">Liên hệ chăm sóc</h4>
+          <div class="text-xs">
+            <div class="text-slate-400">Hotline tư vấn 24/7:</div>
+            <div class="text-white font-extrabold text-base text-rose-500">1900 6868</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Email hợp tác:</div>
+            <div class="text-slate-200">contact@bdsviet-hub.vn</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Trụ sở chính:</div>
+            <div class="text-slate-300">Tầng 25, Landmark 81, Vinhomes Central Park, TP. Hồ Chí Minh</div>
+          </div>
+          <div class="text-xs">
+            <div class="text-slate-400">Chi nhánh Cần Thơ & Miền Tây:</div>
+            <div class="text-slate-300">Ninh Kiều, TP. Cần Thơ (10°02'02.8"N 105°47'15.0"E)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>&copy; 2026 Minh Vương Home Luxury. Thiết kế giao diện hiện đại với Leaflet & Tailwind CSS.</div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Bảo mật SSL 256-bit</span>
+          <span>Phiên bản 2.5 Web Portal</span>
+          <span class="hidden sm:inline-block">Đã chứng nhận Bộ Công Thương</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Container hiển thị thông báo Toast -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Navbar Component Script -->
+  <script src="js/navbar.js"></script>
+
+  <!-- Script điều khiển riêng của Trang Đánh Giá -->
+  <script>
+    // Dữ liệu đánh giá mẫu khởi tạo ban đầu
+    const INITIAL_REVIEWS = [
+      {
+        id: 1,
+        author: "Chị Mai Phương Thảo",
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        city: "Cần Thơ",
+        service: "Mua nhà phố liền thổ",
+        transactionBadge: "Đã mua nhà phố Ninh Kiều - Cần Thơ",
+        rating: 5,
+        date: "Hôm qua lúc 15:42",
+        title: "Bản đồ ghim tọa độ Cần Thơ 10.0341, 105.7875 chuẩn xác tuyệt đối!",
+        content: "Mình ở miền Tây, tìm nhà khu vực Ninh Kiều trên bản đồ Google Maps của trang rất chuẩn xác. Văn phòng Cần Thơ ở Đại lộ Hòa Bình tư vấn cực kỳ nhiệt tình, có xe ô tô đưa đón xem đất thực tế hoàn toàn miễn phí. Thủ tục sang tên công chứng chỉ mất 3 ngày!",
+        helpfulCount: 42,
+        reply: "Dạ Minh Vương Home Luxury chi nhánh Cần Thơ xin cảm ơn chị Thảo rất nhiều! Chúc chị và gia đình luôn an khang thịnh vượng tại ngôi nhà mới ạ."
+      },
+      {
+        id: 2,
+        author: "Anh Hoàng Minh Tuấn",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        city: "TP. Hồ Chí Minh",
+        service: "Mua căn hộ chung cư",
+        transactionBadge: "Đã mua căn 2PN Origami - Vinhomes Grand Park",
+        rating: 5,
+        date: "3 ngày trước",
+        title: "Tính năng bản đồ số vệ tinh và quét bán kính tiện ích đỉnh cao",
+        content: "Rất bất ngờ về tính năng bản đồ số vệ tinh của web, xem được cả bán kính tiện ích trường học, bệnh viện Vinmec quanh Landmark 81 và Vinhomes Grand Park. Gọi lên hotline 1900 6868 được chuyên viên hỗ trợ kết nối chủ nhà trong 10 phút.",
+        helpfulCount: 68,
+        reply: "Minh Vương Home Luxury cảm ơn anh Tuấn đã tin tưởng! Hệ thống bản đồ số luôn được cập nhật dữ liệu quy hoạch mới nhất để hỗ trợ quý khách."
+      },
+      {
+        id: 3,
+        author: "Bác Đỗ Quang Huy",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        city: "Hà Nội",
+        service: "Tư vấn gói vay mua nhà",
+        transactionBadge: "Đã giải ngân ngân hàng BIDV 20 năm",
+        rating: 5,
+        date: "1 tuần trước",
+        title: "Công cụ tính lãi vay mua nhà chính xác từng đồng",
+        content: "Tôi tuổi cao, trước giờ ngại thủ tục vay mua nhà. May nhờ công cụ tính lãi suất trên web tính đúng từng đồng tiền gốc và lãi giảm dần của Vietcombank, chuyên viên chi nhánh Keangnam Hà Nội còn đến tận nhà hướng dẫn hồ sơ rất chu đáo.",
+        helpfulCount: 35,
+        reply: "Kính chúc Bác Huy nhiều sức khỏe! Sự hài lòng của Bác là niềm tự hào lớn của toàn bộ đội ngũ tư vấn Minh Vương Home Luxury."
+      },
+      {
+        id: 4,
+        author: "Anh Trần Quốc Bảo",
+        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&q=80",
+        city: "TP. Hồ Chí Minh",
+        service: "Ký gửi bán nhà đất",
+        transactionBadge: "Đã bán căn hộ Landmark 81 thành công",
+        rating: 5,
+        date: "2 tuần trước",
+        title: "Ký gửi tin đăng tự động ghim bản đồ, chốt cọc trong 3 tuần",
+        content: "Đăng tin ký gửi trên trang này tiếp cận được nhiều khách hàng có nhu cầu thật. Hệ thống Wizard 4 bước đăng tin dễ dùng, tự động ghim vị trí lên Leaflet. Căn hộ của mình đã tìm được người mua với mức giá như ý.",
+        helpfulCount: 29,
+        reply: "Cảm ơn anh Bảo đã lựa chọn dịch vụ ký gửi VIP của sàn! Rất mong được tiếp tục đồng hành cùng anh trong các giao dịch tiếp theo."
+      },
+      {
+        id: 5,
+        author: "Chị Lê Thúy Hằng",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        city: "Đà Nẵng",
+        service: "Tra cứu bản đồ quy hoạch",
+        transactionBadge: "Đã kiểm tra quy hoạch sổ hồng",
+        rating: 5,
+        date: "3 tuần trước",
+        title: "Đội ngũ pháp lý kiểm tra quy hoạch giúp tránh được rủi ro lớn",
+        content: "Nhờ có Minh Vương Home Luxury kiểm tra sổ đỏ và tra cứu quy hoạch mà mình tránh được một lô đất đang dính quy hoạch hành lang mở rộng đường 20m. Phục vụ chuyên nghiệp, minh bạch và không hề thu phụ phí mờ ám.",
+        helpfulCount: 51,
+        reply: "Cảm ơn chị Hằng! Minh bạch thông tin và bảo vệ quyền lợi pháp lý của người mua luôn là kim chỉ nam hàng đầu của chúng tôi."
+      }
+    ];
+
+    let currentStarFilter = "all";
+    let selectedRating = 5;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderReviewsList(INITIAL_REVIEWS);
+    });
+
+    // Xử lý bộ chọn số sao trên Form
+    function setFormRating(val) {
+      selectedRating = val;
+      document.getElementById("form-rating-value").value = val;
+      updateStarIcons(val);
+      updateRatingText(val);
+    }
+
+    function previewFormRating(val) {
+      updateStarIcons(val);
+      updateRatingText(val);
+    }
+
+    function resetPreviewRating() {
+      updateStarIcons(selectedRating);
+      updateRatingText(selectedRating);
+    }
+
+    function updateStarIcons(val) {
+      const stars = document.querySelectorAll("#star-rating-picker i");
+      stars.forEach((star, idx) => {
+        if (idx < val) {
+          star.className = "fa-solid fa-star text-amber-400 scale-110";
+        } else {
+          star.className = "fa-solid fa-star text-slate-200";
+        }
+      });
+    }
+
+    function updateRatingText(val) {
+      const label = document.getElementById("star-rating-label");
+      const texts = {
+        1: "⭐ 1 sao - Rất không hài lòng",
+        2: "⭐⭐ 2 sao - Chưa hài lòng",
+        3: "⭐⭐⭐ 3 sao - Bình thường",
+        4: "⭐⭐⭐⭐ 4 sao - Rất hài lòng",
+        5: "⭐⭐⭐⭐⭐ 5 sao - Rất tuyệt vời!"
+      };
+      label.textContent = texts[val] || "";
+    }
+
+    function handleImageSelect(e) {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById("file-upload-hint").textContent = `Đã chọn: ${file.name}`;
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById("image-preview").src = evt.target.result;
+          document.getElementById("image-preview-container").classList.remove("hidden");
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Xử lý gửi Form đánh giá mới
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("review-name").value.trim();
+      const city = document.getElementById("review-city").value;
+      const service = document.getElementById("review-service").value;
+      const title = document.getElementById("review-title").value.trim();
+      const content = document.getElementById("review-content").value.trim();
+      const isVerified = document.getElementById("review-verified-badge").checked;
+      const previewImg = document.getElementById("image-preview").src;
+
+      const newReview = {
+        id: Date.now(),
+        author: name,
+        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+        city: city,
+        service: service,
+        transactionBadge: isVerified ? `Đã xác thực giao dịch tại ${city}` : "Khách hàng mới",
+        rating: selectedRating,
+        date: "Vừa xong",
+        title: title,
+        content: content,
+        image: previewImg && previewImg.length > 50 ? previewImg : null,
+        helpfulCount: 1,
+        reply: `Minh Vương Home Luxury trân trọng cảm ơn quý khách ${name}! Mọi ý kiến đóng góp của bạn là động lực để chúng tôi nâng cao chất lượng dịch vụ hơn nữa.`
+      };
+
+      // Đưa đánh giá mới lên đầu danh sách
+      INITIAL_REVIEWS.unshift(newReview);
+      renderReviewsList(INITIAL_REVIEWS);
+
+      // Hiển thị thông báo
+      showToast(`Cảm ơn quý khách ${name}! Đánh giá của bạn đã được xuất bản công khai thành công.`, "success");
+
+      // Reset form
+      e.target.reset();
+      setFormRating(5);
+      document.getElementById("image-preview-container").classList.add("hidden");
+      document.getElementById("file-upload-hint").textContent = "Nhấn để tải lên ảnh thực tế (tối đa 5MB)";
+
+      // Cuộn tới review vừa đăng
+      const container = document.getElementById("reviews-feed-container");
+      container.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Render danh sách đánh giá
+    function renderReviewsList(reviews) {
+      const container = document.getElementById("reviews-feed-container");
+
+      if (reviews.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-3xl p-12 text-center border border-slate-200 text-slate-400">
+            <i class="fa-solid fa-comments text-4xl mb-3 text-slate-300"></i>
+            <div class="font-bold text-sm text-slate-700">Chưa có đánh giá nào phù hợp với bộ lọc</div>
+            <p class="text-xs text-slate-400 mt-1">Hãy thử chọn số sao khác hoặc chuyển khu vực toàn quốc</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = reviews.map(r => `
+        <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all space-y-4">
+          
+          <!-- Header người đánh giá -->
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <img src="${r.avatar}" alt="${r.author}" class="w-12 h-12 rounded-2xl object-cover border border-slate-200 flex-shrink-0" />
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-black text-slate-900 text-sm">${r.author}</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
+                    <i class="fa-solid fa-circle-check text-[9px]"></i>
+                    <span>Xác thực</span>
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
+                  <span class="font-medium text-slate-500">📍 ${r.city}</span>
+                  <span>•</span>
+                  <span>${r.date}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Xếp hạng sao -->
+            <div class="flex items-center gap-1 text-amber-400 text-sm">
+              ${Array.from({ length: 5 }, (_, i) => `
+                <i class="fa-solid fa-star ${i < r.rating ? 'text-amber-400' : 'text-slate-200'}"></i>
+              `).join("")}
+            </div>
+          </div>
+
+          <!-- Huy hiệu dịch vụ -->
+          <div class="flex items-center gap-2 flex-wrap text-xs">
+            <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold text-[11px]">
+              <i class="fa-solid fa-tag mr-1 text-[10px]"></i>${r.service}
+            </span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-semibold text-[11px]">
+              <i class="fa-solid fa-shield-heart mr-1 text-rose-500 text-[10px]"></i>${r.transactionBadge}
+            </span>
+          </div>
+
+          <!-- Tiêu đề & Nội dung -->
+          <div>
+            <h4 class="font-extrabold text-slate-900 text-sm mb-1">${r.title}</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">${r.content}</p>
+          </div>
+
+          ${r.image ? `
+            <div class="pt-2">
+              <img src="${r.image}" alt="Ảnh thực tế" class="max-h-48 rounded-2xl border border-slate-200 object-cover cursor-pointer hover:opacity-95" />
+            </div>
+          ` : ''}
+
+          <!-- Phản hồi chính thức từ Minh Vương Home Luxury -->
+          ${r.reply ? `
+            <div class="bg-blue-50/70 p-3.5 rounded-2xl border border-blue-100/80 space-y-1 text-xs">
+              <div class="flex items-center gap-2 font-bold text-blue-900 text-[11px]">
+                <div class="w-5 h-5 rounded bg-blue-600 text-white flex items-center justify-center text-[10px]">
+                  <i class="fa-solid fa-building"></i>
+                </div>
+                <span>Phản hồi từ Ban Quản Trị Minh Vương Home Luxury</span>
+              </div>
+              <p class="text-slate-600 text-[11px] leading-relaxed pl-7">${r.reply}</p>
+            </div>
+          ` : ''}
+
+          <!-- Footer hành động: Hữu ích -->
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <button onclick="likeReview(this, ${r.id})" class="flex items-center gap-1.5 text-slate-500 hover:text-blue-600 font-semibold transition-colors px-3 py-1.5 rounded-xl hover:bg-slate-50">
+              <i class="fa-regular fa-thumbs-up"></i>
+              <span>Hữu ích (<span class="like-count font-bold">${r.helpfulCount}</span>)</span>
+            </button>
+            <span class="text-[11px] text-slate-400">Đã kiểm duyệt</span>
+          </div>
+
+        </div>
+      `).join("");
+    }
+
+    function filterByStars(stars, btn) {
+      currentStarFilter = stars;
+      document.querySelectorAll(".star-filter-btn").forEach(b => {
+        b.className = "star-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all whitespace-nowrap";
+      });
+      btn.className = "star-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white transition-all whitespace-nowrap";
+      applyFeedFilters();
+    }
+
+    function applyFeedFilters() {
+      const city = document.getElementById("feed-filter-city").value;
+      const sort = document.getElementById("feed-filter-sort").value;
+
+      let list = INITIAL_REVIEWS.filter(r => {
+        if (currentStarFilter !== "all") {
+          const s = parseInt(currentStarFilter, 10);
+          if (s === 3 && r.rating > 3) return false;
+          if (s !== 3 && r.rating !== s) return false;
+        }
+        if (city !== "all" && r.city !== city) return false;
+        return true;
+      });
+
+      // Sắp xếp
+      if (sort === "highest") {
+        list.sort((a, b) => b.rating - a.rating);
+      } else if (sort === "helpful") {
+        list.sort((a, b) => b.helpfulCount - a.helpfulCount);
+      } else {
+        list.sort((a, b) => b.id - a.id);
+      }
+
+      renderReviewsList(list);
+    }
+
+    function likeReview(btn, id) {
+      const countEl = btn.querySelector(".like-count");
+      const current = parseInt(countEl.textContent, 10);
+      countEl.textContent = current + 1;
+      btn.classList.add("text-blue-600");
+      btn.disabled = true;
+      showToast("Cảm ơn bạn đã bình chọn đánh giá này hữu ích!", "success");
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = `p-4 rounded-2xl shadow-2xl flex items-center gap-3 transition-all duration-300 text-xs sm:text-sm font-semibold text-white ${
+        type === "success" ? "bg-emerald-600" : "bg-blue-600"
+      }`;
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4500);
+    }
+  </script>
+</body>
+</html>
